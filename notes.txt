@@ -1,0 +1,12 @@
+The app will have:
+BASIC
+	1. a countdown timer
+	2. a button to start the timer.
+	3. a button to pause the timer.
+	4. a recording mechanism of how many pomodoros covered.
+	5. a stats page to display how many pomodoros you have done.
+STARTER
+	6. User login using google.
+	7. rankings of points using google play ranking for games.
+	8. App to take a screenshot to be shared or create a picture using user's data.
+	9. 

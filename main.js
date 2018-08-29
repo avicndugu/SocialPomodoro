@@ -12,31 +12,30 @@
 // 	b. stores the number of pomodoros tackled which project.
 
 //	1a. count down timer
-// Innitialise time to 25 minutes 
-pomodoroStart=25;
-timeShortBreak=5;
-timeLongBreak=15;
-var countingSeconds=25;
-// function to delay the countdown every second
-function countDelay(){
-	setInterval(countDown, 1000);
-}
+// // Innitialise time to 25 minutes 
+// pomodoroStart=25;
+// timeShortBreak=5;
+// timeLongBreak=15;
+// var countingSeconds=25;
+// // function to delay the countdown every second
+// function countDelay(){
+// 	setInterval(countDown, 1000);
+// }
 
 
 
-function countDown () {
-	countingSeconds--;
-	// while (countingSeconds>0){
-	// 	// decrementing
-	// 	countingSeconds--;
-	// 	// Display on console
-		console.log(countingSeconds);
-		// document.getElementById("demo").innerHTML = countingSeconds;
-	// }
-}
+// function countDown () {
+// 	countingSeconds--;
+// 	// while (countingSeconds>0){
+// 	// 	// decrementing
+// 	// 	countingSeconds--;
+// 	// 	// Display on console
+// 		console.log(countingSeconds);
+// 		// document.getElementById("demo").innerHTML = countingSeconds;
+// 	// }
+// }
 // Mouse click to launch the count down
 
-countDown();
 
 
 
@@ -51,3 +50,7 @@ countDown();
 //go back to pomodoroStart again
 
 // Check how
+
+
+
+
