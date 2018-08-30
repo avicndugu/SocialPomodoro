@@ -1,23 +1,12 @@
-// Set up a trigger that will start the counting
-// If the counter reaches zero it sends a trigger that increments the b count by 1
+// NOTES
 // bug in secondscounter when the counter reaches zero,
 // there is a one second delay before restarting the counter at 60 seconds
-var btnStartStop = document.getElementById('startStop');
+// Set up a trigger that will start the counting
+// If the counter reaches zero it sends a trigger that increments the b count by 1
+
 var startTime=60;
 var currentTimeSeconds=startTime;
-// btnStartStop.addEventListener('click',timer);
-// function timer(){
 
-
-
-	
-// 	if (btnStartStop.textContent==="Start"){
-		
-// 	}
-// 	else{
-	
-// 	}
-// }
 // countdown in seconds
 setInterval(delaying, 1000);
 function delaying(){
