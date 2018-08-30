@@ -1,6 +1,7 @@
 // Set up a trigger that will start the counting
 // If the counter reaches zero it sends a trigger that increments the b count by 1
-
+// bug in secondscounter when the counter reaches zero,
+// there is a one second delay before restarting the counter at 60 seconds
 var btnStartStop = document.getElementById('startStop');
 var startTime=60;
 var currentTimeSeconds=startTime;
@@ -23,11 +24,12 @@ function delaying(){
 // checks and counts down
 	 if (currentTimeSeconds>0){
 		currentTimeSeconds--;
-		console.log(currentTimeSeconds);
+		// console.log(currentTimeSeconds);
 	 }
 //Restarts seconds counter after reaching zero
 	 else {
 	 	currentTimeSeconds=startTime;
+	 	minutesCounter();
 	 }
 }
 
@@ -37,3 +39,12 @@ while (currentTimeSeconds<0) {
 
 // countdown in minutes
 // if currentTime
+initialMinutes=25;
+currentMinutes=initialMinutes;
+console.log(currentMinutes);
+function minutesCounter(){
+	if (currentMinutes>0){
+		currentMinutes--;
+		console.log(currentMinutes);
+	}
+}
