@@ -4,8 +4,11 @@
 // Set up a trigger that will start the counting
 // If the counter reaches zero it sends a trigger that increments the b count by 1
 
-var startTime=60;
-var currentTimeSeconds=startTime;
+var pomoStartTime=5;
+var shortBreakStartTime= 10;
+var longBreakTimeStartTime= 15;
+
+var currentTimeSeconds=pomoStartTime;
 
 // countdown in seconds
 setInterval(delaying, 1000);
@@ -17,8 +20,9 @@ function delaying(){
 	 }
 //Restarts seconds counter after reaching zero
 	 else {
-	 	currentTimeSeconds=startTime;
+	 	currentTimeSeconds=pomoStartTime;
 	 	minutesCounter();
+	 	pomoCounter();
 	 }
 }
 
@@ -30,10 +34,22 @@ while (currentTimeSeconds<0) {
 // if currentTime
 initialMinutes=25;
 currentMinutes=initialMinutes;
-console.log(currentMinutes);
+// console.log(currentMinutes);
 function minutesCounter(){
 	if (currentMinutes>0){
 		currentMinutes--;
-		console.log(currentMinutes);
+		// console.log(currentMinutes);
 	}
 }
+
+
+// Pomo's counter; counts the number of pomodoro covered 
+var pomoCount=0;
+function pomoCounter () {
+	pomoCount++;
+	console.log(pomoCount);
+}
+
+
+// Need to have a counter for the pomodoro time and a counter for the break time
+// Need to switch between pomodoro time and break time counter
