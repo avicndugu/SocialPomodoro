@@ -38,7 +38,7 @@ function delaying(){
 	 }
 }
 
-while (currentTimeSeconds<0) {
+while (currentTimeSeconds<1) {
 	delaying();
 }
 

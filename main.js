@@ -12,28 +12,8 @@
 // 	b. stores the number of pomodoros tackled which project.
 
 //	1a. count down timer
-// // Innitialise time to 25 minutes 
-// pomodoroStart=25;
-// timeShortBreak=5;
-// timeLongBreak=15;
-// var countingSeconds=25;
-// // function to delay the countdown every second
-// function countDelay(){
-// 	setInterval(countDown, 1000);
-// }
 
 
-
-// function countDown () {
-// 	countingSeconds--;
-// 	// while (countingSeconds>0){
-// 	// 	// decrementing
-// 	// 	countingSeconds--;
-// 	// 	// Display on console
-// 		console.log(countingSeconds);
-// 		// document.getElementById("demo").innerHTML = countingSeconds;
-// 	// }
-// }
 // Mouse click to launch the count down
 
 
@@ -50,6 +30,162 @@
 //go back to pomodoroStart again
 
 // Check how
+
+/////////////START OF TIMER COUNTER AND DISPLAY/////////////////////////
+var pomoStartTime=10;
+initialMinutes=3;
+var pomoCount=0;
+// var shortBreakStartTime= 10;
+// var longBreakTimeStartTime= 15;
+
+var currentTimeSeconds=pomoStartTime;
+// var showSeconds=document.querySelector('p');
+
+// variables for displaying timer in the page
+var showSeconds=document.getElementById('seconds');
+var showMinutes=document.getElementById('minutes');
+var showPomos=document.getElementById('pomos');
+// Setting up innitial display
+showSeconds.textContent=pomoStartTime;
+showMinutes.textContent=initialMinutes;
+showPomos.textContent=pomoCount;
+
+// countdown in seconds
+function delaying(){
+// checks and counts down
+	 if (currentTimeSeconds>=1){
+		currentTimeSeconds--;
+		// console.log(currentTimeSeconds);
+// displaying timer seconds in the page
+		showSeconds.textContent=currentTimeSeconds;
+	 }
+//Restarts seconds counter after reaching zero
+	 else {
+	 	currentTimeSeconds=pomoStartTime;
+	 	minutesCounter();
+	 }
+}
+
+while (currentTimeSeconds<1) {
+	delaying();
+}
+
+// countdown in minutes
+// if currentTime
+currentMinutes=initialMinutes;
+// console.log(currentMinutes);
+function minutesCounter(){
+	if (currentMinutes>0){
+		currentMinutes--;
+		// console.log(currentMinutes);
+		showMinutes.textContent=currentMinutes;
+	}
+	else{
+		pomoCounter();
+	}
+}
+// Pomo's counter; counts the number of pomodoro covered 
+function pomoCounter () {
+	pomoCount++;
+	console.log(pomoCount);
+	showPomos.textContent=pomoCount;
+}
+
+setInterval(delaying, 1000);
+
+
+
+////////////////END OF TIMER COUNTER AND DISPLAY////////////////////////
+
+
+///////////////////////////////START OF TIMER BUTTONS//////////////////////////////////
+
+// 1	c. button that starts and stops the timer
+var btnStartStop = document.getElementById('startStop');
+btnStartStop.addEventListener('click',updateBtn);
+function updateBtn(){
+	if (btnStartStop.textContent==="Start"){
+// UPDATES START BUTTON TEXT ON CLICK
+		btnStartStop.textContent="Stop";
+// STARTS THE SECONDS COUNTER
+	}
+	else{
+//UPDATES THE BUTTON TEXT ON CLICK
+		btnStartStop.textContent="Start";
+// STOPS THE SECONDS COUNTER
+	}
+}
+// 1	c. button that pauses and plays the timer
+var btnPausePlay= document.getElementById('pausePlay');
+btnPausePlay.addEventListener('click',updateBtnPausePlay);
+function updateBtnPausePlay(){
+	if (btnPausePlay.textContent==="Pause"){
+		btnPausePlay.textContent="Play";
+	}
+	else{
+		btnPausePlay.textContent="Pause";
+	}	
+}
+
+////////////////////////////END OF TIMER BUTTONS////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 1	c. button that starts and stops the timer
+var btnStartStop = document.getElementById('startStop');
+btnStartStop.addEventListener('click',updateBtn);
+function updateBtn(){
+	if (btnStartStop.textContent==="Start"){
+		btnStartStop.textContent="Stop";
+	}
+	else{
+		btnStartStop.textContent="Start";
+	}
+}
+// 1	c. button that pauses and plays the timer
+var btnPausePlay= document.getElementById('pausePlay');
+btnPausePlay.addEventListener('click',updateBtnPausePlay);
+function updateBtnPausePlay(){
+	if (btnPausePlay.textContent==="Pause"){
+		btnPausePlay.textContent="Play";
+	}
+	else{
+		btnPausePlay.textContent="Pause";
+	}	
+}
 
 
 
