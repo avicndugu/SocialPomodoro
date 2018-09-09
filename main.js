@@ -43,7 +43,7 @@ var currentTimeSeconds=pomoStartTime;
 
 // variables for displaying timer in the page
 var showSeconds=document.getElementById('seconds');
-var showMinutes=document.getElementById('minutes');
+var showMinutes=getElementById.document('minutes');
 var showPomos=document.getElementById('pomos');
 // Setting up innitial display
 showSeconds.textContent=pomoStartTime;
@@ -97,37 +97,6 @@ setInterval(delaying, 1000);
 
 ////////////////END OF TIMER COUNTER AND DISPLAY////////////////////////
 
-
-///////////////////////////////START OF TIMER BUTTONS//////////////////////////////////
-
-// 1	c. button that starts and stops the timer
-var btnStartStop = document.getElementById('startStop');
-btnStartStop.addEventListener('click',updateBtn);
-function updateBtn(){
-	if (btnStartStop.textContent==="Start"){
-// UPDATES START BUTTON TEXT ON CLICK
-		btnStartStop.textContent="Stop";
-// STARTS THE SECONDS COUNTER
-	}
-	else{
-//UPDATES THE BUTTON TEXT ON CLICK
-		btnStartStop.textContent="Start";
-// STOPS THE SECONDS COUNTER
-	}
-}
-// 1	c. button that pauses and plays the timer
-var btnPausePlay= document.getElementById('pausePlay');
-btnPausePlay.addEventListener('click',updateBtnPausePlay);
-function updateBtnPausePlay(){
-	if (btnPausePlay.textContent==="Pause"){
-		btnPausePlay.textContent="Play";
-	}
-	else{
-		btnPausePlay.textContent="Pause";
-	}	
-}
-
-////////////////////////////END OF TIMER BUTTONS////////////////////////
 
 
 
