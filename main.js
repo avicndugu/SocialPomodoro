@@ -43,7 +43,7 @@ var currentTimeSeconds=pomoStartTime;
 
 // variables for displaying timer in the page
 var showSeconds=document.getElementById('seconds');
-var showMinutes=getElementById.document('minutes');
+var showMinutes=document.getElementById('minutes');
 var showPomos=document.getElementById('pomos');
 // Setting up innitial display
 showSeconds.textContent=pomoStartTime;

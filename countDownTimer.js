@@ -27,29 +27,72 @@
 // 	counterminutes(startTime)
 // main()
 
-var pomoStartMinutes=20;
+var pomoStartMinutes=2;
 var currentTimeMinutes=pomoStartMinutes;
-var pomoStartSeconds=20;
+var pomoStartSeconds=5;
 var currentTimeSeconds=pomoStartSeconds;
 
-//////////// MINUTES COUNTER /////////////////////////
+// variables for displaying timer in the page
+var showSeconds=document.getElementById('seconds');
+var showMinutes=document.getElementById('minutes');
+var showPomos=document.getElementById('pomos');
+// Setting up innitial display
+showSeconds.textContent=pomoStartSeconds;
+showMinutes.textContent=pomoStartMinutes;
+// showPomos.textContent=pomoCount;
 
-function delayMinute() {
-// checks and counts down
-	 if (currentTimeMinutes>=1){
-		function delaySec(){
-// checks and counts down
-	 		if (currentTimeSeconds>=0){ //&&  btnStartStop.textContent==="Reset"){
-				console.log(currentTimeSeconds);
-				currentTimeSeconds--;
+
+//////////// MINUTES COUNTER /////////////////////////
+function minutes() {
+	function delaying(){
+	// checks and counts down
+		 if (currentTimeSeconds>=0){
+			// displaying timer seconds in the page
+			showSeconds.textContent=currentTimeSeconds;
+		 	console.log(currentTimeSeconds);
+			currentTimeSeconds--;
+
+
+		}
+		else {
+			// console.log(currentTimeMinutes);
+			showMinutes.textContent=currentTimeMinutes;
+			currentTimeMinutes--;
+			currentTimeSeconds=5;
+			if (currentTimeMinutes<0) {
+				currentTimeMinutes=0;
+				currentTimeSeconds=0;
+				stopCounter();
 			}
 		}
-		console.log(currentTimeMinutes);
-	 	currentTimeMinutes--;
-	 }
-	var secInterval =setInterval(delaySec, 1000);
+	}
+	secInterval=setInterval(delaying, 1000);
 }
+function stopCounter() {
+	clearInterval(secInterval);
+}
+minutes();
 
-delayMinute();
+
+
+
+
+// // function delayMinute() {
+// // // checks and counts down
+// // 	 while (currentTimeMinutes>=1){
+// 		function delaySec(){
+// // checks and counts down
+// 	 		while (currentTimeSeconds>=0){ //&&  btnStartStop.textContent==="Reset"){
+// 				console.log(currentTimeSeconds);
+// 				currentTimeSeconds--;
+// 			}
+// 		}
+// 		// console.log(currentTimeMinutes);
+// 	 // 	currentTimeMinutes--;
+// 	 // }
+// 	setInterval(delaySec, 1000);
+// // }
+
+// // delayMinute();
 
 
