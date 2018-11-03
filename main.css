@@ -1,3 +1,18 @@
 .row {
+	width:100%;
+}
+.collumn {
 	float:left;
+	width:33.3333%;
+	text-align: center;
+	padding-top: 20px;
+}
+.row:after {
+	clear:both;
+}
+button {
+	border:none;
+	padding:20px;
+	background:darkblue;
+	color: #fff;
 }

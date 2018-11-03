@@ -3,27 +3,42 @@
 <html>
 <head>
 	<title> Social Pomodoro</title>
-	
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 	<div class="row">
-		<button id="pomodoro">Pomodoro</button>
-		<button id="short">Short Break</button>
-		<button id="long">Long Break</button>
+		<div class="collumn">
+			<button id="pomodoro"><b>Pomodoro</b></button>
+		</div>
+		<div class="collumn">
+			<button id="short"><b>Short Break</b></button>
+		</div>
+		<div class="collumn">
+			<button id="long"><b>Long Break</b></button>
+		</div>
 	</div>
 	<div class="row">
-
-		<!-- <p id="minutes">Minutes</p> -->
-		<!-- wrapping the content in a div -->
-		<div id="timer">
-			<p></p>
+		<div class="collumn">
+			<p id="minutes"></p>
 		</div>
-		<p id="shower"></p>
-		<!-- <p id="seconds">Seconds</p> -->
-		<h3 id="pomos">how many</h3>
-		<button id="startStop">Start</button>
-		<button id="pausePlay">Pause</button>
-		<button id="reset">Reset</button>
+		<div class="collumn">
+			<p>:</p>
+		</div>
+		<div class="collumn">
+			<p id="seconds">00</p>
+		</div>
+	</div>
+	<div class="row">
+		<h3 id="pomos"></h3>
+		<div class="collumn">
+			<button id="startStop"><b>Start</b></button>
+		</div>
+		<div class="collumn">
+			<button id="pausePlay"><b>Pause</b></button>
+		</div>
+		<div class="collumn">
+			<button id="reset"><b>Reset</b></button>
+		</div>
 	</div>
 	<!-- <p id="demo">ferf</p> -->
 	<!-- <script type="text/javascript" src="main.js"></script>

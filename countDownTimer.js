@@ -3,62 +3,90 @@
 //  1. change the start button in timerButtons.js from stop to start
 //  2. send a trigger to pomoCounter.js to increment by 1
 
-// var pomoStartMinutes=2;
-// var currentTimeMinutes=pomoStartMinutes;
-// var pomoStartSeconds=5;
-// var currentTimeSeconds=pomoStartSeconds;
+var pomoStartMinutes=5;
+var currentTimeMinutes=pomoStartMinutes-1;
+var pomoStartSeconds=60;
+var currentTimeSeconds=pomoStartSeconds-1;
 
 // // variables for displaying timer in the page
-// var showSeconds=document.getElementById('seconds');
-// var showMinutes=document.getElementById('minutes');
+var showSeconds=document.getElementById('seconds');
+var showMinutes=document.getElementById('minutes');
 // var showPomos=document.getElementById('pomos');
+	showMinutes.textContent=pomoStartMinutes;	
+
 // // Setting up innitial display
 // showSeconds.textContent=pomoStartSeconds;
-// showMinutes.textContent=pomoStartMinutes;
+
 // // showPomos.textContent=pomoCount;
 
-
-// //////////// MINUTES COUNTER /////////////////////////
-// function minutes() {
-// 	function delaying(){
+// //////////// POMODORO COUNTER /////////////////////////
+function startDisplayPomo (){
+	showMinutes.textContent=pomoStartMinutes;	
+	showMinutes.textContent=currentTimeMinutes;	
+	// showSeconds.textContent=currentTimeSeconds;	
+}
+function pomodoroCounter() {
+	// showMinutes.textContent=pomoStartMinutes;
+	function delaying(){
 // 	// checks and counts down
-// 		 if (currentTimeSeconds>=0){
+		 if (currentTimeSeconds>0){
 // 			// displaying timer seconds in the page
-// 			showSeconds.textContent=currentTimeSeconds;
-// 		 	console.log(currentTimeSeconds);
-// 			currentTimeSeconds--;
+		 	// console.log(currentTimeSeconds);
+			showSeconds.textContent=currentTimeSeconds;
+			currentTimeSeconds--;
+			// showSeconds.textContent=currentTimeSeconds;			
+		}
+		else if (currentTimeMinutes>0) {
+			// console.log(currentTimeMinutes);
+
+			showSeconds.textContent=currentTimeSeconds;
+			currentTimeMinutes--;
+			showMinutes.textContent=currentTimeMinutes;
+			currentTimeSeconds=59;
+		 }
+		 else{
+		  	//if (currentTimeMinutes==0){
+			currentTimeMinutes=0;
+			currentTimeSeconds=0;
+			showSeconds.textContent=currentTimeSeconds;
+				// stopCounter();
+			}
+		}
+	secInterval=setInterval(delaying, 1000);
+}
+
+document.querySelector('#pomodoro').addEventListener('click', function(){
+	pomodoroCounter();
+	startDisplayPomo();
+	// changeId();
+});
 
 
-// 		}
-// 		else {
-// 			// console.log(currentTimeMinutes);
-// 			showMinutes.textContent=currentTimeMinutes;
-// 			currentTimeMinutes--;
-// 			currentTimeSeconds=5;
-// 			if (currentTimeMinutes<0) {
-// 				currentTimeMinutes=0;
-// 				currentTimeSeconds=0;
-// 				stopCounter();
-// 			}
-// 		}
-// 	}
-// 	secInterval=setInterval(delaying, 1000);
-// }
-// function stopCounter() {
-// 	clearInterval(secInterval);
-// }
-// minutes();
+//////////////// BREAK COUNTER////////////////////////////
+function startDisplayShort (){
+	
+}
+function shortBreakCounter() {
 
-const timer = document.querySelector("#timer");
-let minutes, seconds;
+}
 
-minutes = 10;
-seconds = 20;
-
-// timer.childNodes[1].innerHTML = `${minutes}` + " : " + `${seconds}`;
+document.querySelector('#short').addEventListener('click', function(){
+	shortBreakCounter();
+	startDisplayShort();
+	// changeId();
+});
 
 
-const shower= document.querySelector("#shower");
-minutes = 10;
-seconds = 20;
-shower.innerHTML = minutes + " : " + seconds;
+///////////////LONG BREAK COUNTER ////////////////////////////
+function startDisplayLong (){
+	
+}
+function longBreakCounter() {
+	
+}
+
+document.querySelector('#long').addEventListener('click', function(){
+	startDisplayLong();
+	longBreakCounter();
+	// changeId();
+});
