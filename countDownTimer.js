@@ -3,26 +3,26 @@
 //  1. change the start button in timerButtons.js from stop to start
 //  2. send a trigger to pomoCounter.js to increment by 1
 var pomo = {
-	startMinutes:10,
-	startSeconds:10,
-	currentMinutes:9,
-	currentSeconds:9
+	startMinutes:25,
+	startSeconds:60,
+	currentMinutes:24,
+	currentSeconds:59
 }
 console.log(pomo.currentMinutes);
 
 var shortB ={
-	startMinutes:3,
-	startSeconds:10,
-	currentMinutes:2,
-	currentSeconds:9
+	startMinutes:5,
+	startSeconds:60,
+	currentMinutes:4,
+	currentSeconds:59
 }
 console.log(shortB.currentMinutes);
 
 var longB = {
-	startMinutes:5,
-	startSeconds:10,
-	currentMinutes:4,
-	currentSeconds:9
+	startMinutes:15,
+	startSeconds:59,
+	currentMinutes:14,
+	currentSeconds:59
 }
 console.log(longB.currentMinutes);
 
@@ -53,7 +53,7 @@ function pomodoroCounter() {
 			showSeconds.textContent=pomo.currentSeconds;
 			pomo.currentMinutes--;
 			showMinutes.textContent=pomo.currentMinutes;
-			pomo.currentSeconds=9;
+			pomo.currentSeconds=59;
 		 }
 		 else{
 		  	//if (currentTimeMinutes==0){
@@ -115,7 +115,7 @@ function shortBreakCounter() {
 			showSeconds.textContent=shortB.currentSeconds;
 			shortB.currentMinutes--;
 			showMinutes.textContent=shortB.currentMinutes;
-			shortB.currentSeconds=9;
+			shortB.currentSeconds=59;
 		 }
 		 else{
 		  	//if (currentTimeMinutes==0){
@@ -158,7 +158,7 @@ function longBreakCounter() {
 			showSeconds.textContent=longB.currentSeconds;
 			longB.currentMinutes--;
 			showMinutes.textContent=longB.currentMinutes;
-			longB.currentSeconds=9;
+			longB.currentSeconds=59;
 		 }
 		 else{
 		  	//if (currentTimeMinutes==0){
