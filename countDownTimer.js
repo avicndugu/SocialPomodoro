@@ -3,13 +3,31 @@
 //  1. change the start button in timerButtons.js from stop to start
 //  2. send a trigger to pomoCounter.js to increment by 1
 var pomo = {
-	startMinutes:5
+	startMinutes:10,
+	startSeconds:10,
+	currentMinutes:9,
+	currentSeconds:9
 }
-var pomoStartMinutes=5;
-var currentTimeMinutes=pomo.startMinutes-1;
-var pomoStartSeconds=10;
-var currentTimeSeconds=pomoStartSeconds-1;
+console.log(pomo.currentMinutes);
 
+var shortB ={
+	startMinutes:3,
+	startSeconds:10,
+	currentMinutes:2,
+	currentSeconds:9
+}
+console.log(shortB.currentMinutes);
+
+var longB = {
+	startMinutes:5,
+	startSeconds:10,
+	currentMinutes:4,
+	currentSeconds:9
+}
+console.log(longB.currentMinutes);
+
+// var currentTimeMinutes=pomo.startMinutes-1;
+// pomo.currentSeconds=pomo.startSeconds-1;
 // // variables for displaying timer in the page
 var showSeconds=document.getElementById('seconds');
 var showMinutes=document.getElementById('minutes');
@@ -21,35 +39,34 @@ var showMinutes=document.getElementById('minutes');
 // //////////// POMODORO COUNTER /////////////////////////
 function startDisplayPomo (){
 	showMinutes.textContent=pomo.startMinutes;	
-	showMinutes.textContent=currentTimeMinutes;	
+	showMinutes.textContent=pomo.currentMinutes;	
 }
 function pomodoroCounter() {
 	function delaying(){
 // 	// checks and counts down
-		 if (currentTimeSeconds>0){
+		 if (pomo.currentSeconds>0){
 // 			// displaying timer seconds in the page
-		 	// console.log(currentTimeSeconds);
-			showSeconds.textContent=currentTimeSeconds;
-			currentTimeSeconds--;
+			showSeconds.textContent=pomo.currentSeconds;
+			pomo.currentSeconds--;
 		}
-		else if (currentTimeMinutes>0) {
-			// console.log(currentTimeMinutes);
-
-			showSeconds.textContent=currentTimeSeconds;
-			currentTimeMinutes--;
-			showMinutes.textContent=currentTimeMinutes;
-			currentTimeSeconds=9;
+		else if (pomo.currentMinutes>0) {
+			showSeconds.textContent=pomo.currentSeconds;
+			pomo.currentMinutes--;
+			showMinutes.textContent=pomo.currentMinutes;
+			pomo.currentSeconds=9;
 		 }
 		 else{
 		  	//if (currentTimeMinutes==0){
-			currentTimeMinutes=0;
-			currentTimeSeconds=0;
-			showSeconds.textContent=currentTimeSeconds;
-				// stopCounter();
+			pomo.currentMinutes=0;
+			pomo.currentSeconds=0;
+			showSeconds.textContent=pomo.currentSeconds;
+			console.log("Long break is over");
+			// stopCounter();
 			}
 		}
 	secInterval=setInterval(delaying, 1000);
 }
+var pomodoro=document.querySelector('#pomodoro');
 var play=document.querySelector('#play');
 var pause= document.querySelector('#pause');
 var long=document.querySelector('#long');
@@ -67,42 +84,99 @@ play.addEventListener('click', function(){
 });
 // Detects the click and starts the timer and does several things.
 // Kills play button and pomodoro button
-var pomodoro=document.querySelector('#pomodoro');
 pomodoro.addEventListener('click', function(){
 	pomodoroCounter();
 	startDisplayPomo();
 	pomodoro.disabled=true; //This avoids double clicks can be number 0 or 1 or true or false.
 	play.disabled=true;
+	pause.disabled=true;
+	short.disabled=true;
+	long.disabled=true;
 });
 
 
 //////////////// BREAK COUNTER////////////////////////////
 function startDisplayShort (){
-		
+	showMinutes.textContent=shortB.startMinutes;
+	showMinutes.textContent=shortB.currentMinutes;
+	showSeconds.textContent=shortB.currentSeconds;
 }
 function shortBreakCounter() {
+	function delaying(){
+	// checks and counts down
+		 if (shortB.currentSeconds>0){
+		// displaying timer seconds in the page
+			showSeconds.textContent=shortB.currentSeconds;
+			shortB.currentSeconds--;
+		}
+		else if (shortB.currentMinutes>0) {
+			// console.log(currentTimeMinutes);
 
+			showSeconds.textContent=shortB.currentSeconds;
+			shortB.currentMinutes--;
+			showMinutes.textContent=shortB.currentMinutes;
+			shortB.currentSeconds=9;
+		 }
+		 else{
+		  	//if (currentTimeMinutes==0){
+			shortB.currentMinutes=0;
+			shortB.currentSeconds=0;
+			showSeconds.textContent=shortB.currentSeconds;
+			console.log("Long break is over");
+			// stopCounter();
+			}
+	}secInterval=setInterval(delaying, 1000);
 }
 
 short.addEventListener('click', function(){
 	startDisplayShort();
 	shortBreakCounter();
 	// console.log('enabled');
+	pomodoro.disabled=true;
+	play.disabled=true;
+	pause.disabled=true;
 	short.disabled=true;
+	long.disabled=true;
 });
 
 
 ///////////////LONG BREAK COUNTER ////////////////////////////
 function startDisplayLong (){
-	
+	showMinutes.textContent=longB.startMinutes;
+	showMinutes.textContent=longB.currentMinutes;
+	showSeconds.textContent=longB.currentSeconds;
 }
 function longBreakCounter() {
-	
+	function delaying(){
+	// checks and counts down
+		 if (longB.currentSeconds>0){
+		// displaying timer seconds in the page
+			showSeconds.textContent=longB.currentSeconds;
+			longB.currentSeconds--;
+		}
+		else if (longB.currentMinutes>0) {
+			showSeconds.textContent=longB.currentSeconds;
+			longB.currentMinutes--;
+			showMinutes.textContent=longB.currentMinutes;
+			longB.currentSeconds=9;
+		 }
+		 else{
+		  	//if (currentTimeMinutes==0){
+			longB.currentMinutes=0;
+			longB.currentSeconds=0;
+			showSeconds.textContent=longB.currentSeconds;
+			console.log("Long break is over");
+				// stopCounter();
+			}
+	}secInterval=setInterval(delaying, 1000);
 }
 
 long.addEventListener('click', function(){
 	startDisplayLong();
 	longBreakCounter();
+	pomodoro.disabled=true;
+	pause.disabled=true;
+	play.disabled=true;
+	short.disabled=true;
 	long.disabled=true;
-	// changeId();
 });
