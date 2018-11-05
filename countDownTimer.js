@@ -2,31 +2,28 @@
 // Once the counter reaches zero,it sends a trigger to:
 //  1. change the start button in timerButtons.js from stop to start
 //  2. send a trigger to pomoCounter.js to increment by 1
-
+var pomo = {
+	startMinutes:5
+}
 var pomoStartMinutes=5;
-var currentTimeMinutes=pomoStartMinutes-1;
-var pomoStartSeconds=60;
+var currentTimeMinutes=pomo.startMinutes-1;
+var pomoStartSeconds=10;
 var currentTimeSeconds=pomoStartSeconds-1;
 
 // // variables for displaying timer in the page
 var showSeconds=document.getElementById('seconds');
 var showMinutes=document.getElementById('minutes');
 // var showPomos=document.getElementById('pomos');
-	showMinutes.textContent=pomoStartMinutes;	
-
 // // Setting up innitial display
-// showSeconds.textContent=pomoStartSeconds;
-
+	showMinutes.textContent=pomo.startMinutes;	
 // // showPomos.textContent=pomoCount;
 
 // //////////// POMODORO COUNTER /////////////////////////
 function startDisplayPomo (){
-	showMinutes.textContent=pomoStartMinutes;	
+	showMinutes.textContent=pomo.startMinutes;	
 	showMinutes.textContent=currentTimeMinutes;	
-	// showSeconds.textContent=currentTimeSeconds;	
 }
 function pomodoroCounter() {
-	// showMinutes.textContent=pomoStartMinutes;
 	function delaying(){
 // 	// checks and counts down
 		 if (currentTimeSeconds>0){
@@ -34,7 +31,6 @@ function pomodoroCounter() {
 		 	// console.log(currentTimeSeconds);
 			showSeconds.textContent=currentTimeSeconds;
 			currentTimeSeconds--;
-			// showSeconds.textContent=currentTimeSeconds;			
 		}
 		else if (currentTimeMinutes>0) {
 			// console.log(currentTimeMinutes);
@@ -42,7 +38,7 @@ function pomodoroCounter() {
 			showSeconds.textContent=currentTimeSeconds;
 			currentTimeMinutes--;
 			showMinutes.textContent=currentTimeMinutes;
-			currentTimeSeconds=59;
+			currentTimeSeconds=9;
 		 }
 		 else{
 		  	//if (currentTimeMinutes==0){
@@ -54,26 +50,45 @@ function pomodoroCounter() {
 		}
 	secInterval=setInterval(delaying, 1000);
 }
+var play=document.querySelector('#play');
+var pause= document.querySelector('#pause');
+var long=document.querySelector('#long');
+var short=document.querySelector('#short');
+var long=document.querySelector('#long');
 
-document.querySelector('#pomodoro').addEventListener('click', function(){
+
+// Detects the click play button and starts the timer and does several things.
+// Kills pomodoro button and start button 
+play.addEventListener('click', function(){
 	pomodoroCounter();
 	startDisplayPomo();
-	// changeId();
+	pomodoro.disabled=true;
+	play.disabled=true;
+});
+// Detects the click and starts the timer and does several things.
+// Kills play button and pomodoro button
+var pomodoro=document.querySelector('#pomodoro');
+pomodoro.addEventListener('click', function(){
+	pomodoroCounter();
+	startDisplayPomo();
+	pomodoro.disabled=true; //This avoids double clicks can be number 0 or 1 or true or false.
+	play.disabled=true;
 });
 
 
 //////////////// BREAK COUNTER////////////////////////////
 function startDisplayShort (){
-	
+		
 }
 function shortBreakCounter() {
 
 }
 
-document.querySelector('#short').addEventListener('click', function(){
-	shortBreakCounter();
+short.addEventListener('click', function(){
 	startDisplayShort();
-	// changeId();
+	shortBreakCounter();
+	// console.log('enabled');
+	short.disabled=true;
 });
 
 
@@ -85,8 +100,9 @@ function longBreakCounter() {
 	
 }
 
-document.querySelector('#long').addEventListener('click', function(){
+long.addEventListener('click', function(){
 	startDisplayLong();
 	longBreakCounter();
+	long.disabled=true;
 	// changeId();
 });
