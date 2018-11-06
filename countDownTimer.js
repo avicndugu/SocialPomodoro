@@ -32,6 +32,7 @@ var play=document.querySelector('#play');
 var pause= document.querySelector('#pause');
 var long=document.querySelector('#long');
 var short=document.querySelector('#short');
+var reset=document.querySelector('#reset');
 // var currentTimeMinutes=pomo.startMinutes-1;
 // pomo.currentSeconds=pomo.startSeconds-1;
 // // variables for displaying timer in the page
@@ -45,7 +46,6 @@ var showMinutes=document.getElementById('minutes');
 
 // //////////// POMODORO COUNTER /////////////////////////
 function startDisplayPomo (){
-
 	showMinutes.textContent=pomo.startMinutes;	
 	showMinutes.textContent=pomo.currentMinutes;	
 }
@@ -104,6 +104,7 @@ function shortBreakCounter() {
 			showSeconds.textContent=shortB.currentSeconds;
 			shortB.currentSeconds--;
 		}
+
 		else if (shortB.currentMinutes>0) {
 			// console.log(currentTimeMinutes);
 			showSeconds.textContent=shortB.currentSeconds;
@@ -182,52 +183,75 @@ function longBreakCounter() {
 	}
 }
 /////////////////END OF LONG BREAK COUNTER////////////////////////////
-
+function disabler() {
+	pomodoro.disabled=true; //This avoids double clicks can be number 0 or 1 or true or false.
+	play.disabled=true;
+	// pause.disabled=true;
+	short.disabled=true;
+	long.disabled=true;
+}
 
 /////////////CLICK EVENTS  //////////////////////////////
 // Detects the click play button and starts the timer and does several things.
 // Kills pomodoro button and start button 
 	play.addEventListener('click', function(){
-		pomodoro.disabled=true;
-		play.disabled=true;
-		pause.disabled=true;
-		short.disabled=true;
-		long.disabled=true;
+		disabler();
 		pomodoroCounter();
 		startDisplayPomo();
+	});
+	pause.addEventListener('click', function(){
+		disabler();
+		// pomo.currentSeconds=pomo.currentSeconds+100;
+		console.log(pomo.currentSeconds);
+		clearInterval(secInterval);
 	});
 	// Detects the click and starts the timer and does several things.
 	// Kills play button and pomodoro button
 	pomodoro.addEventListener('click', function(){
 		pomodoroCounter();
 		startDisplayPomo();
-		play.disabled=true;
-		pomodoro.disabled=true; //This avoids double clicks can be number 0 or 1 or true or false.
-		pause.disabled=true;
-		short.disabled=true;
-		long.disabled=true;
+		disabler();
 	});
 
 	short.addEventListener('click', function(){
+		disabler();
 		startDisplayShort();
 		shortBreakCounter();
-		// console.log('enabled');
-		pomodoro.disabled=true;
-		play.disabled=true;
-		pause.disabled=true;
-		short.disabled=true;
-		long.disabled=true;
-	});
+		});
 
 	long.addEventListener('click', function(){
 		startDisplayLong();
 		longBreakCounter();
-		pomodoro.disabled=true;
-		pause.disabled=true;
-		play.disabled=true;
-		short.disabled=true;
-		long.disabled=true;
+		disabler();
 	});
+
+	reset.addEventListener('click', function(){
+		//If pomodoro timer is running set
+		if (showMinutes.textContent==pomo.currentMinutes){
+			console.log(1);
+			pomo.currentMinutes=0;
+			pomo.currentSeconds=0;
+			showMinutes.textContent=25;//pomo.currentMinutes;
+			showSeconds.textContent=pomo.currentSeconds;
+			}
+			//If short break timer is running set
+		if (showMinutes.textContent==shortB.currentMinutes){
+			console.log(2);
+			shortB.currentMinutes=0;
+			shortB.currentSeconds=0;
+			showMinutes.textContent=5;//shortB.currentMinutes;
+			showSeconds.textContent=shortB.currentSeconds;
+		}
+			//If long break timer is running set
+		if (showMinutes.textContent==longB.currentMinutes){
+			console.log(3);
+			longB.currentMinutes=0;
+			longB.currentSeconds=0;
+			showMinutes.textContent=15;//longB.currentMinutes;
+			showSeconds.textContent=longB.currentSeconds;
+		}
+	});
+
 
 // END OF CLICK EVENTS //////////////////////////////
 /////////////NO OF POMODOROS //////////////////////////////
