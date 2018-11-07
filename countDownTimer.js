@@ -3,26 +3,27 @@
 //  1. change the start button in timerButtons.js from stop to start
 //  2. send a trigger to pomoCounter.js to increment by 1
 
+var timer;
 var pomo = {
-	startMinutes:25,
-	startSeconds:60,
-	currentMinutes:24,
-	currentSeconds:59
+	startMinutes:5,
+	startSeconds:10,
+	currentMinutes:4,
+	currentSeconds:9
 }
 console.log(pomo.currentMinutes);
 
 var shortB ={
-	startMinutes:5,
-	startSeconds:60,
-	currentMinutes:4,
-	currentSeconds:59
+	startMinutes:3,
+	startSeconds:10,
+	currentMinutes:2,
+	currentSeconds:9
 }
 console.log(shortB.currentMinutes);
 
 var longB = {
-	startMinutes:15,
+	startMinutes:4,
 	startSeconds:60,
-	currentMinutes:14,
+	currentMinutes:3,
 	currentSeconds:59
 }
 console.log(longB.currentMinutes);
@@ -45,13 +46,14 @@ var showMinutes=document.getElementById('minutes');
 
 
 // //////////// POMODORO COUNTER /////////////////////////
-function startDisplayPomo (){
-	showMinutes.textContent=pomo.startMinutes;	
-	showMinutes.textContent=pomo.currentMinutes;	
-}
+// function startDisplayPomo (){
+// 	showMinutes.textContent=pomo.startMinutes;	
+// 	showMinutes.textContent=pomo.currentMinutes;	
+// }
 function pomodoroCounter() {
+	secInterval=setInterval(delaying, 1000);
 	function delaying(){
-// 	// checks and counts down
+	// checks and counts down
 		 if (pomo.currentSeconds>0){
 // 			// displaying timer seconds in the page
 			showSeconds.textContent=pomo.currentSeconds;
@@ -71,7 +73,6 @@ function pomodoroCounter() {
 			endOfPomo();
 			}
 		}
-	secInterval=setInterval(delaying, 1000);
 	// stops delaying code from running after timer reaches 0
 	function endOfPomo() {
 		clearInterval(secInterval);
@@ -93,10 +94,11 @@ function pomodoroCounter() {
 
 //////////////// BREAK COUNTER////////////////////////////
 function startDisplayShort (){
-	showMinutes.textContent=shortB.startMinutes;
-	showMinutes.textContent=shortB.currentMinutes;
+	// showMinutes.textContent=shortB.startMinutes;
+	// showMinutes.textContent=shortB.currentMinutes;
 }
 function shortBreakCounter() {
+	secInterval=setInterval(delaying, 1000);
 	function delaying(){
 	// checks and counts down
 		 if (shortB.currentSeconds>0){
@@ -110,7 +112,7 @@ function shortBreakCounter() {
 			showSeconds.textContent=shortB.currentSeconds;
 			shortB.currentMinutes--;
 			showMinutes.textContent=shortB.currentMinutes;
-			shortB.currentSeconds=59;
+			shortB.currentSeconds=9;
 		 }
 		 else{
 		  	//if (currentTimeMinutes==0){
@@ -119,16 +121,16 @@ function shortBreakCounter() {
 			showSeconds.textContent=shortB.currentSeconds;
 			endOfShortB();
 			}
-	}
-	secInterval=setInterval(delaying, 1000);
+	}	
 	// stops delaying code from running after timer reaches 0
 	function endOfShortB() {
 		clearInterval(secInterval);
 		console.log("End of shortB");
 		// Innitialize the timer to original state
 		showMinutes.textContent=shortB.startMinutes;
-		shortB.currentSeconds=shortB.startSeconds;
-		console.log(shortB.currentSeconds);
+		showSeconds.textContent=shortB.startSeconds;
+		console.log(shortB.startMinutes);
+		console.log(shortB.startSeconds);
 		// Reactivate all the buttons
 		pomodoro.disabled=false;
 		play.disabled=false;
@@ -139,12 +141,9 @@ function shortBreakCounter() {
 }
 
 ///////////////LONG BREAK COUNTER ////////////////////////////
-function startDisplayLong (){
-	showMinutes.textContent=longB.startMinutes;
-	showMinutes.textContent=longB.currentMinutes;
-}
+
 function longBreakCounter() {
-	function delaying(){
+	function longDelay(){
 	// checks and counts down
 		 if (longB.currentSeconds>0){
 		// displaying timer seconds in the page
@@ -155,7 +154,7 @@ function longBreakCounter() {
 			showSeconds.textContent=longB.currentSeconds;
 			longB.currentMinutes--;
 			showMinutes.textContent=longB.currentMinutes;
-			longB.currentSeconds=59;
+			longB.currentSeconds=9;
 		 }
 		 else{
 		  	//if (currentTimeMinutes==0){
@@ -164,10 +163,10 @@ function longBreakCounter() {
 			showSeconds.textContent=longB.currentSeconds;
 			endOfLongB();
 			}
-	}secInterval=setInterval(delaying, 1000);
+	}longSecInterval=setInterval(longDelay, 1000);
 	// stops delaying code from running after timer reaches 0
 	function endOfLongB() {
-		clearInterval(secInterval);
+		clearInterval(longSecInterval);
 		console.log("End of longB");
 	// Innitialize the timer to original state
 		showMinutes.textContent=longB.startMinutes;
@@ -189,6 +188,7 @@ function disabler() {
 	// pause.disabled=true;
 	short.disabled=true;
 	long.disabled=true;
+	// reset.disabled=true;
 }
 
 /////////////CLICK EVENTS  //////////////////////////////
@@ -201,57 +201,77 @@ function disabler() {
 	});
 	pause.addEventListener('click', function(){
 		disabler();
-		// pomo.currentSeconds=pomo.currentSeconds+100;
-		console.log(pomo.currentSeconds);
+		pause.disabled=true;
+		console.log(longB.currentSeconds);
+		console.log(shortB.currentSeconds);
+		clearInterval(longSecInterval);
 		clearInterval(secInterval);
 	});
 	// Detects the click and starts the timer and does several things.
 	// Kills play button and pomodoro button
 	pomodoro.addEventListener('click', function(){
-		pomodoroCounter();
-		startDisplayPomo();
 		disabler();
+		timer=1; //Trigger to identify which timer is being reset.
+		pomodoro.currentSeconds=9;
+		pomodoro.currentMinutes=4;
+		showMinutes.textContent=pomodoro.startMinutes;
+		showMinutes.textContent=pomodoro.currentMinutes;
+		pomodoroCounter();
+		return timer;
 	});
 
 	short.addEventListener('click', function(){
 		disabler();
-		startDisplayShort();
+		timer=2; //Trigger to identify which timer is being reset.
+		shortB.currentSeconds=9;
+		shortB.currentMinutes=2;
+		showMinutes.textContent=shortB.startMinutes;
+		showMinutes.textContent=shortB.currentMinutes;
 		shortBreakCounter();
 		});
 
 	long.addEventListener('click', function(){
-		startDisplayLong();
-		longBreakCounter();
 		disabler();
+		timer=3; //Trigger to identify which timer is being reset.
+		longB.currentSeconds=9;
+		longB.currentMinutes=3;
+		showMinutes.textContent=longB.startMinutes;
+		showMinutes.textContent=longB.currentMinutes;
+		longBreakCounter();
 	});
 
 	reset.addEventListener('click', function(){
 		//If pomodoro timer is running set
-		if (showMinutes.textContent==pomo.currentMinutes){
-			console.log(1);
+		if (timer==1){
+			console.log(timer);
 			pomo.currentMinutes=0;
 			pomo.currentSeconds=0;
-			showMinutes.textContent=25;//pomo.currentMinutes;
+			showMinutes.textContent=5;//pomo.currentMinutes;
 			showSeconds.textContent=pomo.currentSeconds;
 			}
 			//If short break timer is running set
-		if (showMinutes.textContent==shortB.currentMinutes){
-			console.log(2);
+		if (timer==2){
+			console.log(timer);
 			shortB.currentMinutes=0;
 			shortB.currentSeconds=0;
-			showMinutes.textContent=5;//shortB.currentMinutes;
+			showMinutes.textContent=3;//shortB.currentMinutes;
 			showSeconds.textContent=shortB.currentSeconds;
 		}
 			//If long break timer is running set
-		if (showMinutes.textContent==longB.currentMinutes){
-			console.log(3);
+		if (timer==3){
+			console.log(timer);
 			longB.currentMinutes=0;
 			longB.currentSeconds=0;
-			showMinutes.textContent=15;//longB.currentMinutes;
+			showMinutes.textContent=4;//longB.currentMinutes;
 			showSeconds.textContent=longB.currentSeconds;
 		}
 	});
-
-
 // END OF CLICK EVENTS //////////////////////////////
+
+
+// Resuming after a pause
+
+
+
+
 /////////////NO OF POMODOROS //////////////////////////////
