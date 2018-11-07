@@ -3,7 +3,8 @@
 //  1. change the start button in timerButtons.js from stop to start
 //  2. send a trigger to pomoCounter.js to increment by 1
 
-var timer;
+var timer=0;
+var paused;
 var pomo = {
 	startMinutes:5,
 	startSeconds:10,
@@ -195,17 +196,50 @@ function disabler() {
 // Detects the click play button and starts the timer and does several things.
 // Kills pomodoro button and start button 
 	play.addEventListener('click', function(){
-		disabler();
-		pomodoroCounter();
-		startDisplayPomo();
+		if (timer==1){
+			console.log(timer);
+			disabler();
+			timer=1;
+			pomodoro.currentSeconds=9;
+			pomodoro.currentMinutes=4;
+			showMinutes.textContent=pomodoro.startMinutes;
+			showMinutes.textContent=pomodoro.currentMinutes;
+			pomodoroCounter();
+		}
+		if(timer==2){
+			disabler();
+			shortB.currentSeconds=9;
+			shortB.currentMinutes=2;
+			showMinutes.textContent=shortB.startMinutes;
+			showMinutes.textContent=shortB.currentMinutes;
+			shortBreakCounter();
+		}
+		if (timer==3){
+			disabler();
+			timer=3; //Trigger to identify which timer is being reset.
+			longB.currentSeconds=9;
+			longB.currentMinutes=3;
+			showMinutes.textContent=longB.startMinutes;
+			showMinutes.textContent=longB.currentMinutes;
+			longBreakCounter();
+		}
 	});
 	pause.addEventListener('click', function(){
 		disabler();
 		pause.disabled=true;
 		console.log(longB.currentSeconds);
 		console.log(shortB.currentSeconds);
-		clearInterval(longSecInterval);
-		clearInterval(secInterval);
+		if (timer==1) {
+			clearInterval(secInterval);
+			paused=1;
+		}
+		if (timer==2) {
+			clearInterval(secInterval);
+		}
+		if (timer==3){
+			clearInterval(longSecInterval);
+		}
+
 	});
 	// Detects the click and starts the timer and does several things.
 	// Kills play button and pomodoro button
@@ -217,7 +251,6 @@ function disabler() {
 		showMinutes.textContent=pomodoro.startMinutes;
 		showMinutes.textContent=pomodoro.currentMinutes;
 		pomodoroCounter();
-		return timer;
 	});
 
 	short.addEventListener('click', function(){
