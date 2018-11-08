@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+<button id="start">start</button>
+<button id="end">end</button>
+<div id="txt"></div>
+
+</body>
+<script>
+// Function that displays a timer
+var htaker,mtaker,staker;
+var startTime=new Array();
+var endTime=new Array();
+function startTimer () {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds(); 
+    var startTime=[h,m,s];
+    console.log(startTime);
+    
+    var endTime=[h,m,s];
+    console.log(endTime);
+    // m = checkTime(m); // convert number to string
+    // console.log(typeof(m));
+    // s = checkTime(s); // convert number to string
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    // function checkTime(i) {
+    //    if (i < 10) {i = "0" + i};
+    //     return i;
+    // }
+    htaker=h;
+    mtaker=m;
+    staker=s;
+    // console.log(htaker);
+    // console.log(mtaker);
+    // console.log(staker);
+    return true;
+}
+
+
+
+document.querySelector('#start').addEventListener('click', function(){  
+    startTimer();    
+});
+document.querySelector('#end').addEventListener('click', function(){  
+    startTimer();
+});
+</script>
+</html>

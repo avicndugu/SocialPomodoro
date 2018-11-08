@@ -5,13 +5,14 @@
 
 var timer=0;
 var paused;
+var pomos=0;
 var pomo = {
 	startMinutes:5,
 	startSeconds:10,
-	currentMinutes:4,
+	currentMinutes:1,
 	currentSeconds:9
 }
-console.log(pomo.currentMinutes);
+// console.log(pomo.currentMinutes);
 
 var shortB ={
 	startMinutes:3,
@@ -19,7 +20,7 @@ var shortB ={
 	currentMinutes:2,
 	currentSeconds:9
 }
-console.log(shortB.currentMinutes);
+// console.log(shortB.currentMinutes);
 
 var longB = {
 	startMinutes:4,
@@ -27,7 +28,7 @@ var longB = {
 	currentMinutes:3,
 	currentSeconds:59
 }
-console.log(longB.currentMinutes);
+// console.log(longB.currentMinutes);
 
 var pomodoro=document.querySelector('#pomodoro');
 var play=document.querySelector('#play');
@@ -64,25 +65,28 @@ function pomodoroCounter() {
 			showSeconds.textContent=pomo.currentSeconds;
 			pomo.currentMinutes--;
 			showMinutes.textContent=pomo.currentMinutes;
-			pomo.currentSeconds=59;
+			pomo.currentSeconds=9;
 		 }
 		 else{
 		  	//if (currentTimeMinutes==0){
 			pomo.currentMinutes=0;
 			pomo.currentSeconds=0;
 			showSeconds.textContent=pomo.currentSeconds;
+			// NUMBER OF POMOS 
+			pomos=pomos+1;
+			console.log(pomos);
 			endOfPomo();
 			}
 		}
 	// stops delaying code from running after timer reaches 0
 	function endOfPomo() {
-		clearInterval(secInterval);
+		window.clearInterval(secInterval);
 		console.log("End of pomo");
-		console.log(pomo.startMinutes);
+		// console.log(pomo.startMinutes);
 		// Innitialize the timer to original state
 		showMinutes.textContent=pomo.startMinutes;
 		pomo.currentSeconds=pomo.startSeconds;
-		console.log(pomo.currentSeconds);
+		// console.log(pomo.currentSeconds);
 		// Reactivate all the buttons
 		pomodoro.disabled=false;
 		play.disabled=false;
@@ -197,14 +201,15 @@ function disabler() {
 // Kills pomodoro button and start button 
 	play.addEventListener('click', function(){
 		if (timer==1){
-			console.log(timer);
-			disabler();
-			timer=1;
-			pomodoro.currentSeconds=9;
-			pomodoro.currentMinutes=4;
-			showMinutes.textContent=pomodoro.startMinutes;
-			showMinutes.textContent=pomodoro.currentMinutes;
+			// console.log(timer);
+			// disabler();
+			// timer=1;
+			// pomodoro.currentSeconds=9;
+			// pomodoro.currentMinutes=1;
+			// showMinutes.textContent=pomodoro.startMinutes;
+			// showMinutes.textContent=pomodoro.currentMinutes;
 			pomodoroCounter();
+			secInterval = setInterval(delaying, 1000);
 		}
 		if(timer==2){
 			disabler();
@@ -225,13 +230,14 @@ function disabler() {
 		}
 	});
 	pause.addEventListener('click', function(){
-		disabler();
+		// disabler();
+		play.disabled=false;
 		pause.disabled=true;
 		console.log(longB.currentSeconds);
 		console.log(shortB.currentSeconds);
 		if (timer==1) {
 			clearInterval(secInterval);
-			paused=1;
+			// paused=1;
 		}
 		if (timer==2) {
 			clearInterval(secInterval);
@@ -276,7 +282,8 @@ function disabler() {
 	reset.addEventListener('click', function(){
 		//If pomodoro timer is running set
 		if (timer==1){
-			console.log(timer);
+			pomos=pomos;
+			console.log(pomos);
 			pomo.currentMinutes=0;
 			pomo.currentSeconds=0;
 			showMinutes.textContent=5;//pomo.currentMinutes;

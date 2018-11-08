@@ -1,161 +1,81 @@
-// Components
-// 1. Time Components
-// 	a. count down timer
-// 	b. display the count down timer
-// 	c. button that starts and stops the timer
-// 	d. the end of pomodoro triggers a break timer
-// 	e. At the end of the 4 pomodoro, it triggers a longer break.
-// 2. Storage
-// 	a. stores the number of pomodoros tackled in the last 24 hours
-// 	b. stores the number of pomodoros tackled in the last 1 week
-// 	a. stores the number of pomodoros tackled in the last 24 month
-// 	b. stores the number of pomodoros tackled which project.
+var timer=0;
+var paused;
+var pomos=0;
+var pomo = {
+	startMinutes:5,
+	startSeconds:10,
+	currentMinutes:1,
+	currentSeconds:9
+}
+// console.log(pomo.currentMinutes);
 
-//	1a. count down timer
+var shortB ={
+	startMinutes:3,
+	startSeconds:10,
+	currentMinutes:2,
+	currentSeconds:9
+}
+// console.log(shortB.currentMinutes);
 
-
-// Mouse click to launch the count down
-
-
-
-
-
-
-
-// count number of pomodoro 
-
-//start short break
-
-
-//go back to pomodoroStart again
-
-// Check how
-
-/////////////START OF TIMER COUNTER AND DISPLAY/////////////////////////
-var pomoStartTime=10;
-initialMinutes=3;
-var pomoCount=0;
-// var shortBreakStartTime= 10;
-// var longBreakTimeStartTime= 15;
-
-var currentTimeSeconds=pomoStartTime;
-// var showSeconds=document.querySelector('p');
-
-// variables for displaying timer in the page
+var longB = {
+	startMinutes:4,
+	startSeconds:60,
+	currentMinutes:3,
+	currentSeconds:59
+}
+// // variables for displaying timer in the page
 var showSeconds=document.getElementById('seconds');
 var showMinutes=document.getElementById('minutes');
-var showPomos=document.getElementById('pomos');
-// Setting up innitial display
-showSeconds.textContent=pomoStartTime;
-showMinutes.textContent=initialMinutes;
-showPomos.textContent=pomoCount;
+showMinutes.textContent=pomo.startMinutes;
+// showMinutes.textContent=pomo.currentMinutes;
 
-// countdown in seconds
-function delaying(){
-// checks and counts down
-	 if (currentTimeSeconds>=1){
-		currentTimeSeconds--;
-		// console.log(currentTimeSeconds);
-// displaying timer seconds in the page
-		showSeconds.textContent=currentTimeSeconds;
-	 }
-//Restarts seconds counter after reaching zero
-	 else {
-	 	currentTimeSeconds=pomoStartTime;
-	 	minutesCounter();
-	 }
+var startPomoTimer= function(){
+	secInterval=setInterval(delaying, 1000);
+	pomodoro.disabled=true;
 }
-
-while (currentTimeSeconds<1) {
-	delaying();
-}
-
-// countdown in minutes
-// if currentTime
-currentMinutes=initialMinutes;
-// console.log(currentMinutes);
-function minutesCounter(){
-	if (currentMinutes>0){
-		currentMinutes--;
-		// console.log(currentMinutes);
-		showMinutes.textContent=currentMinutes;
+var delaying = function (){
+	console.log("message");
+	// checks and counts down
+	if (pomo.currentSeconds>0){
+		// displaying timer seconds in the page
+		showSeconds.textContent=pomo.currentSeconds;
+		pomo.currentSeconds--;
+	}
+	else if (pomo.currentMinutes>0) {
+		showSeconds.textContent=pomo.currentSeconds;
+		pomo.currentMinutes--;
+		showMinutes.textContent=pomo.currentMinutes;
+		pomo.currentSeconds=9;
 	}
 	else{
-		pomoCounter();
+	//if (currentTimeMinutes==0){
+		pomo.currentMinutes=0;
+		pomo.currentSeconds=0;
+		showSeconds.textContent=pomo.currentSeconds;
+		// NUMBER OF POMOS 
+		pomos=pomos+1;
+		console.log(pomos);
+		endOfPomo();
+	}
+	// stops delaying code from running after timer reaches 0
+	function endOfPomo() {
+		window.clearInterval(secInterval);
+		console.log("End of pomo");
+		// console.log(pomo.startMinutes);
+		// Innitialize the timer to original state
+		showMinutes.textContent=pomo.startMinutes;
+		pomo.currentSeconds=pomo.startSeconds;
+		// console.log(pomo.currentSeconds);
+		// Reactivate all the buttons
+		pomodoro.disabled=false;
+		play.disabled=false;
+		pause.disabled=false;
+		short.disabled=false;
+		long.disabled=false;
 	}
 }
-// Pomo's counter; counts the number of pomodoro covered 
-function pomoCounter () {
-	pomoCount++;
-	console.log(pomoCount);
-	showPomos.textContent=pomoCount;
+
+var pausePomoTimer = function (){
+	window.clearInterval(secInterval);
+	pomodoro.disabled=false;
 }
-
-setInterval(delaying, 1000);
-
-
-
-////////////////END OF TIMER COUNTER AND DISPLAY////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 1	c. button that starts and stops the timer
-var btnStartStop = document.getElementById('startStop');
-btnStartStop.addEventListener('click',updateBtn);
-function updateBtn(){
-	if (btnStartStop.textContent==="Start"){
-		btnStartStop.textContent="Stop";
-	}
-	else{
-		btnStartStop.textContent="Start";
-	}
-}
-// 1	c. button that pauses and plays the timer
-var btnPausePlay= document.getElementById('pausePlay');
-btnPausePlay.addEventListener('click',updateBtnPausePlay);
-function updateBtnPausePlay(){
-	if (btnPausePlay.textContent==="Pause"){
-		btnPausePlay.textContent="Play";
-	}
-	else{
-		btnPausePlay.textContent="Pause";
-	}	
-}
-
-
-
-
