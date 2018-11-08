@@ -27,14 +27,14 @@ var longB = {
 var showSeconds=document.getElementById('seconds');
 var showMinutes=document.getElementById('minutes');
 showMinutes.textContent=pomo.startMinutes;
-// showMinutes.textContent=pomo.currentMinutes;
 
 var startPomoTimer= function(){
 	secInterval=setInterval(delaying, 1000);
 	pomodoro.disabled=true;
+	reset.disabled=false;
 }
 var delaying = function (){
-	console.log("message");
+	// console.log("message");
 	// checks and counts down
 	if (pomo.currentSeconds>0){
 		// displaying timer seconds in the page
@@ -75,7 +75,16 @@ var delaying = function (){
 	}
 }
 
+
 var pausePomoTimer = function (){
+	window.clearInterval(secInterval);
+	pomodoro.disabled=false;
+}
+var ResetPomoTimer = function (){
+	pomo.currentMinutes=pomo.startMinutes;
+	pomo.currentSeconds=pomo.startSeconds;
+	showMinutes.textContent=pomo.startMinutes;
+	showSeconds.textContent=pomo.startSeconds;
 	window.clearInterval(secInterval);
 	pomodoro.disabled=false;
 }
