@@ -8,18 +8,18 @@
 <body>
 	<div class="row">
 		<div class="collumn">
-			<button id="pomodoro" onclick="startPomoTimer()"><b>Pomodoro</b></button>
+			<button id="pomodoro" class="buttons" onclick="startPomoTimer()"><b>Pomodoro</b></button>
 		</div>
 		<div class="collumn">
-			<button id="short"><b>Short Break</b></button>
+			<button id="short" class="buttons" onclick="startShortBTimer()"><b>Short Break</b></button>
 		</div>
 		<div class="collumn">
-			<button id="long"><b>Long Break</b></button>
+			<button id="long" class="buttons" onclick="startLongBTimer()"><b>Long Break</b></button>
 		</div>
 	</div>
 	<div class="row">
 		<div class="collumn">
-			<p id="minutes"></p>
+			<p id="minutes">25</p>
 		</div>
 		<div class="collumn">
 			<p>:</p>
@@ -31,13 +31,13 @@
 	<div class="row">
 		<h3 id="pomos"></h3>
 		<div class="collumn">
-			<button id="play"><b>Play</b></button>
+			<button id="play" class="buttons" onclick="playPomoTimer()"><b>Play</b></button>
 		</div>
 		<div class="collumn">
-			<button id="pause" onclick="pausePomoTimer()"><b>Pause</b></button>
+			<button id="pause" class="buttons" onclick="pausePomoTimer()"><b>Pause</b></button>
 		</div>
 		<div class="collumn">
-			<button id="reset" onclick="ResetPomoTimer()"><b>Reset</b></button>
+			<button id="reset" class="buttons" onclick="ResetPomoTimer()"><b>Reset</b></button>
 		</div>
 	</div>
 	<!-- <p id="demo">ferf</p> -->
