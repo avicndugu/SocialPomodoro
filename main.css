@@ -1,5 +1,9 @@
+body {
+	background:#dedede;
+}
 .row {
-	width:100%;
+	width:60%;
+	margin:0 auto;
 }
 .collumn {
 	float:left;
@@ -12,10 +16,26 @@
 }
 button {
 	border:none;
-	padding:20px;
-	background:darkblue;
+	padding:20px 40px;
+	background:#008000;
 	color: #fff;
 }
-#reset {
+/*#reset {
 	background:red;
+}*/
+img {
+	width:100px;
+}
+button {
+	font-size:18px;
+}
+p {
+	font-size:90px;
+}
+
+#minutes {
+	text-align: right;
+}
+#seconds {
+	text-align: left;	
 }
