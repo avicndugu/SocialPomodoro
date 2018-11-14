@@ -5,8 +5,8 @@ var round=0;
 var pomo = {
 	startMinutes:25,
 	startSeconds:60,
-	currentMinutes:24,
-	currentSeconds:59
+	currentMinutes:2,
+	currentSeconds:1
 }
 // console.log(pomo.currentMinutes);
 
@@ -14,7 +14,7 @@ var shortB ={
 	startMinutes:5,
 	startSeconds:60,
 	currentMinutes:4,
-	currentSeconds:59
+	currentSeconds:5
 }
 // console.log(shortB.currentMinutes);
 
@@ -22,7 +22,7 @@ var longB = {
 	startMinutes:15,
 	startSeconds:60,
 	currentMinutes:14,
-	currentSeconds:59
+	currentSeconds:5
 }
 shortButton = document.getElementById('short');
 longButton = document.getElementById('long');
@@ -86,13 +86,14 @@ var pomoDelaying = function (){
 // pomo.currentSeconds=pomo.startSeconds;
 		// console.log(pomo.currentSeconds);
 		// Reactivate all the buttons
+		playAudio();
 		pomodoro.disabled=true;
 		play.disabled=true;
 		pause.disabled=true;
 		shortButton.disabled=false;
 		reset.disabled=true;
 		// showDisabled();
-		pomoFlow()
+		pomoFlow();
 	}
 	function pomoCounter() {
 		if (pomos<4){
@@ -155,7 +156,7 @@ function shortDelaying(){
 		showSeconds.textContent=shortB.currentSeconds;
 		shortB.currentMinutes--;
 		showMinutes.textContent=shortB.currentMinutes;
-		shortB.currentSeconds=59;
+		shortB.currentSeconds=5;
 	 }
 	 else{
 	  	//if (currentTimeMinutes==0){
@@ -174,6 +175,7 @@ function endOfShortB() {
 	console.log(shortB.startMinutes);
 	console.log(shortB.startSeconds);
 	// Reactivate all the buttons
+	playAudio();
 	pomodoro.disabled=false;
 	play.disabled=true;
 	pause.disabled=false;
@@ -211,7 +213,7 @@ function longDelaying(){
 		showSeconds.textContent=longB.currentSeconds;
 		longB.currentMinutes--;
 		showMinutes.textContent=longB.currentMinutes;
-		longB.currentSeconds=59;
+		longB.currentSeconds=5;
 	 }
 	 else{
 	  	//if (currentTimeMinutes==0){
@@ -231,6 +233,7 @@ function endOfLongB() {
 	console.log(longB.currentSeconds);
 // Reactivate all the buttons
 	// long.disabled=false;
+	playAudio();
 	pomodoro.disabled=false;
 	play.disabled=true;
 	pause.disabled=false;
@@ -352,9 +355,8 @@ console.log(buttons);
 
 
 //////////////////testingggggggggggg////////////////
-// var x = document.getElementById("notification"); 
+var notification = document.getElementById("notification"); 
 
-// function playAudio() { 
-//     alert("1");
-//     x.play(); 
-// }
+function playAudio() { 
+    notification.play(); 
+}
