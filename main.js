@@ -347,3 +347,14 @@ function showDisabled() {
 	});
 }
 console.log(buttons);
+
+
+
+
+//////////////////testingggggggggggg////////////////
+// var x = document.getElementById("notification"); 
+
+// function playAudio() { 
+//     alert("1");
+//     x.play(); 
+// }
