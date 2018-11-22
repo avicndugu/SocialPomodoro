@@ -6,7 +6,7 @@ var pomo = {
 	startMinutes:25,
 	startSeconds:60,
 	currentMinutes:24,
-	currentSeconds:59
+	currentSeconds:1
 }
 // console.log(pomo.currentMinutes);
 
@@ -14,7 +14,7 @@ var shortB ={
 	startMinutes:5,
 	startSeconds:60,
 	currentMinutes:4,
-	currentSeconds:59
+	currentSeconds:5
 }
 // console.log(shortB.currentMinutes);
 
@@ -22,7 +22,7 @@ var longB = {
 	startMinutes:15,
 	startSeconds:60,
 	currentMinutes:14,
-	currentSeconds:59
+	currentSeconds:5
 }
 shortButton = document.getElementById('short');
 longButton = document.getElementById('long');
@@ -87,13 +87,14 @@ var pomoDelaying = function (){
 // pomo.currentSeconds=pomo.startSeconds;
 		// console.log(pomo.currentSeconds);
 		// Reactivate all the buttons
+		playAudio();
 		pomodoro.disabled=true;
 		play.disabled=true;
 		pause.disabled=true;
 		shortButton.disabled=false;
 		reset.disabled=true;
 		// showDisabled();
-		pomoFlow()
+		pomoFlow();
 	}
 	function pomoCounter() {
 		if (pomos<4){
@@ -156,8 +157,13 @@ function shortDelaying(){
 		// console.log(currentTimeMinutes);
 		showSeconds.textContent=shortB.currentSeconds;
 		shortB.currentMinutes--;
+<<<<<<< HEAD
 		// showMinutes.textContent=shortB.currentMinutes;
 		shortB.currentSeconds=59;
+=======
+		showMinutes.textContent=shortB.currentMinutes;
+		shortB.currentSeconds=5;
+>>>>>>> d5db0deed306daa74eb7baaf33b441a1210d9a99
 	 }
 	 else{
 	  	//if (currentTimeMinutes==0){
@@ -176,6 +182,7 @@ function endOfShortB() {
 	console.log(shortB.startMinutes);
 	console.log(shortB.startSeconds);
 	// Reactivate all the buttons
+	playAudio();
 	pomodoro.disabled=false;
 	play.disabled=true;
 	pause.disabled=false;
@@ -213,7 +220,12 @@ function longDelaying(){
 	else if (longB.currentMinutes>0) {
 		showSeconds.textContent=longB.currentSeconds;
 		longB.currentMinutes--;
+<<<<<<< HEAD
 		longB.currentSeconds=59;
+=======
+		showMinutes.textContent=longB.currentMinutes;
+		longB.currentSeconds=5;
+>>>>>>> d5db0deed306daa74eb7baaf33b441a1210d9a99
 	 }
 	 else{
 	  	//if (currentTimeMinutes==0){
@@ -233,6 +245,7 @@ function endOfLongB() {
 	console.log(longB.currentSeconds);
 // Reactivate all the buttons
 	// long.disabled=false;
+	playAudio();
 	pomodoro.disabled=false;
 	play.disabled=true;
 	pause.disabled=false;
@@ -354,9 +367,16 @@ console.log(buttons);
 
 
 //////////////////testingggggggggggg////////////////
+<<<<<<< HEAD
 var x = document.getElementById("notification"); 
 
 function playAudio() { 
     alert("1");
     x.play(); 
+=======
+var notification = document.getElementById("notification"); 
+
+function playAudio() { 
+    notification.play(); 
+>>>>>>> d5db0deed306daa74eb7baaf33b441a1210d9a99
 }
