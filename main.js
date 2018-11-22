@@ -1,5 +1,5 @@
 var timer=1;
-var paused;
+// var paused;
 var pomos=0;
 var round=0;
 var pomo = {
@@ -14,7 +14,7 @@ var shortB ={
 	startMinutes:5,
 	startSeconds:60,
 	currentMinutes:4,
-	currentSeconds:5
+	currentSeconds:59
 }
 // console.log(shortB.currentMinutes);
 
@@ -22,7 +22,7 @@ var longB = {
 	startMinutes:15,
 	startSeconds:60,
 	currentMinutes:14,
-	currentSeconds:5
+	currentSeconds:59
 }
 shortButton = document.getElementById('short');
 longButton = document.getElementById('long');
@@ -30,11 +30,17 @@ longButton = document.getElementById('long');
 var showSeconds=document.getElementById('seconds');
 var showMinutes=document.getElementById('minutes');
 var buttons=document.getElementsByTagName("button");
+var paused=document.getElementById('pause-icon');
+var played=document.getElementById('play-icon');
+var reseted=document.getElementById('reset-icon');
 
+paused.style.display="none";
+reseted.style.display="none";
 shortButton.disabled=true;
 longButton.disabled=true;
 pause.disabled=true;
 reset.disabled=true;
+reseted.style.display="none";
 showDisabled();
 // showMinutes.textContent=pomo.startMinutes;
 // showSeconds.textContent=pomo.startSeconds;
@@ -47,14 +53,16 @@ var startPomoTimer= function(){
 	pomoSecInterval=setInterval(pomoDelaying, 1000);
 	pomodoro.disabled=true;
 	reset.disabled=false;
+	reseted.style.display="inline-block";
 	shortButton.disabled=true;
 	pause.disabled=false;
+	paused.style.display="inline-block";
 	longButton.disabled=true;
 	play.disabled=true;
+	played.style.display="none";
 	showDisabled();
 }
 var pomoDelaying = function (){
-	// console.log("message");
 	// checks and counts down
 	if (pomo.currentSeconds>0){
 		// displaying timer seconds in the page
@@ -65,11 +73,9 @@ var pomoDelaying = function (){
 	else if (pomo.currentMinutes>0) {
 		showSeconds.textContent=pomo.currentSeconds;
 		pomo.currentMinutes--;
-		// showMinutes.textContent=pomo.currentMinutes;
 		pomo.currentSeconds=59;
 	}
 	else{
-	//if (currentTimeMinutes==0){
 		pomo.currentMinutes=0;
 		pomo.currentSeconds=0;
 		showSeconds.textContent=pomo.currentSeconds;
@@ -90,9 +96,12 @@ var pomoDelaying = function (){
 		playAudio();
 		pomodoro.disabled=true;
 		play.disabled=true;
+		played.style.display="none";
 		pause.disabled=true;
+		paused.style.display="none";
 		shortButton.disabled=false;
 		reset.disabled=true;
+		reseted.style.display="none";
 		// showDisabled();
 		pomoFlow();
 	}
@@ -140,8 +149,11 @@ var startShortBTimer= function(){
 	longButton.disabled=true;
 	pomodoro.disabled=true;
 	reset.disabled=false;
+	reseted.style.display="inline-block";
 	pause.disabled=false;
+	paused.style.display="inline-block";
 	play.disabled=true;
+	played.style.display="none";
 	showDisabled();
 }
 function shortDelaying(){
@@ -157,13 +169,10 @@ function shortDelaying(){
 		// console.log(currentTimeMinutes);
 		showSeconds.textContent=shortB.currentSeconds;
 		shortB.currentMinutes--;
-<<<<<<< HEAD
 		// showMinutes.textContent=shortB.currentMinutes;
 		shortB.currentSeconds=59;
-=======
-		showMinutes.textContent=shortB.currentMinutes;
-		shortB.currentSeconds=5;
->>>>>>> d5db0deed306daa74eb7baaf33b441a1210d9a99
+		// showMinutes.textContent=shortB.currentMinutes;
+		// shortB.currentSeconds=5;
 	 }
 	 else{
 	  	//if (currentTimeMinutes==0){
@@ -185,7 +194,9 @@ function endOfShortB() {
 	playAudio();
 	pomodoro.disabled=false;
 	play.disabled=true;
+	played.style.display="none";
 	pause.disabled=false;
+	paused.style.display="inline-block";
 	shortButton.disabled=true;
 	longButton.disabled=true;
 	showDisabled();
@@ -205,8 +216,11 @@ var startLongBTimer =function () {
 	shortButton.disabled=true;
 	pomodoro.disabled=true;
 	reset.disabled=false;
+	reseted.style.display="inline-block";
 	pause.disabled=false;
+	paused.style.display="inline-block";
 	play.disabled=true;
+	played.style.display="none";
 	showDisabled();
 }
 function longDelaying(){
@@ -220,12 +234,9 @@ function longDelaying(){
 	else if (longB.currentMinutes>0) {
 		showSeconds.textContent=longB.currentSeconds;
 		longB.currentMinutes--;
-<<<<<<< HEAD
 		longB.currentSeconds=59;
-=======
-		showMinutes.textContent=longB.currentMinutes;
-		longB.currentSeconds=5;
->>>>>>> d5db0deed306daa74eb7baaf33b441a1210d9a99
+		// showMinutes.textContent=longB.currentMinutes;
+		// longB.currentSeconds=5;
 	 }
 	 else{
 	  	//if (currentTimeMinutes==0){
@@ -248,10 +259,13 @@ function endOfLongB() {
 	playAudio();
 	pomodoro.disabled=false;
 	play.disabled=true;
+	played.style.display="none";
 	pause.disabled=false;
+	paused.style.display="inline-block";
 	shortButton.disabled=true;
 	longButton.disabled=true;
 	reset.disabled=false;
+	reseted.style.display="inline-block";
 	showDisabled();
 
 }
@@ -262,21 +276,27 @@ var pausePomoTimer = function (){
 		window.clearInterval(pomoSecInterval);
 		pomodoro.disabled=true;
 		play.disabled=false;
+		played.style.display="inline-block";
 		pause.disabled=true;
+		paused.style.display="none";
 		showDisabled();
 	}
 	if (timer==2) {
 		window.clearInterval(shortSecInterval);
 		shortButton.disabled=true;
 		play.disabled=false;
+		played.style.display="inline-block";
 		pause.disabled=true;
+		paused.style.display="none";
 		showDisabled();
 	}
 	if (timer==3) {
 		window.clearInterval(longSecInterval);
 		longButton.disabled=true;
 		play.disabled=false;
+		played.style.display="inline-block";
 		pause.disabled=true;
+		paused.style.display="none";
 		showDisabled();
 	}
 }
@@ -285,24 +305,33 @@ var playPomoTimer = function (){
 		pomoSecInterval=setInterval(pomoDelaying, 1000);
 		pomodoro.disabled=true;
 		reset.disabled=false;
+		reseted.style.display="inline-block";
 		pause.disabled=false;
+		paused.style.display="inline-block";
 		play.disabled=true;
+		played.style.display="none";
 		showDisabled();
 	}
 	if (timer==2) {
 		shortSecInterval=setInterval(shortDelaying, 1000);
 		shortB.disabled=true;
 		reset.disabled=false;
+		reseted.style.display="inline-block";
 		play.disabled=true;
+		played.style.display="none";
 		pause.disabled=false;
+		paused.style.display="inline-block";
 		showDisabled();
 	}
 	if (timer==3) {
 		longSecInterval=setInterval(longDelaying, 1000);
 		longButton.disabled=true;
 		reset.disabled=false;
+		reseted.style.display="inline-block";
 		pause.disabled=false;
+		paused.style.display="inline-block";
 		play.disabled=true;
+		played.style.display="none";
 		showDisabled();
 	}
 }
@@ -317,8 +346,11 @@ var ResetPomoTimer = function (){
 		pomodoro.disabled=false;
 		shortButton.disabled=false;
 		play.disabled=true;
+		played.style.display="none";
 		pause.disabled=true;
+		paused.style.display="none";
 		reset.disabled=true;
+		reseted.style.display="none";
 		showDisabled();
 	}
 	if (timer==2) {
@@ -331,8 +363,11 @@ var ResetPomoTimer = function (){
 		pomodoro.disabled=false;
 		longButton.disabled=false;
 		play.disabled=true;
+		played.style.display="none";
 		pause.disabled=true;
+		paused.style.display="none";
 		reset.disabled=true;
+		reseted.style.display="none";
 		showDisabled();
 	}
 	if (timer==3) {
@@ -345,8 +380,11 @@ var ResetPomoTimer = function (){
 		pomodoro.disabled=false;
 		longButton.disabled=false;
 		play.disabled=true;
+		played.style.display="none";
 		pause.disabled=true;
+		paused.style.display="none";
 		reset.disabled=true;
+		reseted.style.display="none";
 		showDisabled();
 }
 }
@@ -367,16 +405,37 @@ console.log(buttons);
 
 
 //////////////////testingggggggggggg////////////////
-<<<<<<< HEAD
-var x = document.getElementById("notification"); 
+// var x = document.getElementById("notification"); 
 
-function playAudio() { 
-    alert("1");
-    x.play(); 
-=======
+// function playAudio() { 
+//     alert("1");
+//     x.play(); 
 var notification = document.getElementById("notification"); 
 
 function playAudio() { 
     notification.play(); 
->>>>>>> d5db0deed306daa74eb7baaf33b441a1210d9a99
+}
+
+////// hiding buttons that are not in use////////////////
+function resetPressed() {
+	played.style.display="inline-block";
+	paused.style.display="none";
+	reseted.style.display="none";
+}
+
+function playPressed() {
+	played.style.display="none";
+	paused.style.display="inline-block";
+	reseted.style.display="inline-block";
+}
+function pausePressed() {
+	played.style.display="inline-block";
+	paused.style.display="none";
+	reseted.style.display="inline-block";
+	// if(paused.style.display="none"){
+	// paused.style.display="inline-block";
+	// }
+	// else {
+	// 	paused.style.display="none";
+	// }
 }
