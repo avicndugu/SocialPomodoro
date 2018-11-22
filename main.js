@@ -42,7 +42,7 @@ var startPomoTimer= function(){
 	timer=1;
 	// pomo.currentMinutes=pomo.currentMinutes;
 	// pomo.currentSeconds=pomo.currentSeconds;
-	showMinutes.textContent=pomo.currentMinutes;
+	// showMinutes.textContent=pomo.currentMinutes;
 	// showSeconds.textContent=pomo.startSeconds;
 	pomoSecInterval=setInterval(pomoDelaying, 1000);
 	pomodoro.disabled=true;
@@ -58,14 +58,15 @@ var pomoDelaying = function (){
 	// checks and counts down
 	if (pomo.currentSeconds>0){
 		// displaying timer seconds in the page
+		showMinutes.textContent=pomo.currentMinutes;
 		showSeconds.textContent=pomo.currentSeconds;
 		pomo.currentSeconds--;
 	}
 	else if (pomo.currentMinutes>0) {
 		showSeconds.textContent=pomo.currentSeconds;
 		pomo.currentMinutes--;
-		showMinutes.textContent=pomo.currentMinutes;
-		pomo.currentSeconds=2;
+		// showMinutes.textContent=pomo.currentMinutes;
+		pomo.currentSeconds=59;
 	}
 	else{
 	//if (currentTimeMinutes==0){
@@ -147,6 +148,7 @@ function shortDelaying(){
 	 if (shortB.currentSeconds>0){
 	// displaying timer seconds in the page
 		showSeconds.textContent=shortB.currentSeconds;
+		showMinutes.textContent=shortB.currentMinutes;
 		shortB.currentSeconds--;
 	}
 
@@ -154,7 +156,7 @@ function shortDelaying(){
 		// console.log(currentTimeMinutes);
 		showSeconds.textContent=shortB.currentSeconds;
 		shortB.currentMinutes--;
-		showMinutes.textContent=shortB.currentMinutes;
+		// showMinutes.textContent=shortB.currentMinutes;
 		shortB.currentSeconds=59;
 	 }
 	 else{
@@ -205,12 +207,12 @@ function longDelaying(){
 	 if (longB.currentSeconds>0){
 	// displaying timer seconds in the page
 		showSeconds.textContent=longB.currentSeconds;
+		showMinutes.textContent=longB.currentMinutes;
 		longB.currentSeconds--;
 	}
 	else if (longB.currentMinutes>0) {
 		showSeconds.textContent=longB.currentSeconds;
 		longB.currentMinutes--;
-		showMinutes.textContent=longB.currentMinutes;
 		longB.currentSeconds=59;
 	 }
 	 else{
@@ -352,9 +354,9 @@ console.log(buttons);
 
 
 //////////////////testingggggggggggg////////////////
-// var x = document.getElementById("notification"); 
+var x = document.getElementById("notification"); 
 
-// function playAudio() { 
-//     alert("1");
-//     x.play(); 
-// }
+function playAudio() { 
+    alert("1");
+    x.play(); 
+}
