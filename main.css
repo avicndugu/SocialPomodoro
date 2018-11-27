@@ -20,11 +20,10 @@ button {
 	background:#008000;
 	color: #fff;
 }
-/*#reset {
-	background:red;
-}*/
+
 img {
 	width:100px;
+	display:inline-block;
 }
 button {
 	font-size:18px;

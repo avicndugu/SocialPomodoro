@@ -38,8 +38,6 @@ paused.style.display="none";
 reseted.style.display="none";
 shortButton.disabled=true;
 longButton.disabled=true;
-// pause.disabled=true;
-// reset.disabled=true;
 reseted.style.display="none";
 showDisabled();
 // showMinutes.textContent=pomo.startMinutes;
@@ -55,10 +53,8 @@ var startPomoTimer= function(){
 	// reset.disabled=false;
 	reseted.style.display="inline-block";
 	shortButton.disabled=true;
-	// pause.disabled=false;
 	paused.style.display="inline-block";
 	longButton.disabled=true;
-	// play.disabled=true;
 	played.style.display="none";
 	showDisabled();
 }
@@ -95,15 +91,9 @@ var pomoDelaying = function (){
 		// Reactivate all the buttons
 		playAudio();
 		pomodoro.disabled=true;
-		// play.disabled=true;
 		played.style.display="none";
-		// pause.disabled=true;
 		paused.style.display="none";
 		shortButton.disabled=false;
-		// reset.disabled=true;
-		reseted.style.display="none";
-		// showDisabled();
-		pomoFlow();
 	}
 	function pomoCounter() {
 		if (pomos<4){
@@ -148,13 +138,9 @@ var startShortBTimer= function(){
 	shortButton.disabled=true;
 	longButton.disabled=true;
 	pomodoro.disabled=true;
-	// reset.disabled=false;
 	reseted.style.display="inline-block";
-	// pause.disabled=false;
 	paused.style.display="inline-block";
-	// play.disabled=true;
 	played.style.display="none";
-	showDisabled();
 }
 function shortDelaying(){
 // checks and counts down
@@ -193,10 +179,6 @@ function endOfShortB() {
 	// Reactivate all the buttons
 	playAudio();
 	pomodoro.disabled=false;
-	// play.disabled=true;
-	played.style.display="none";
-	// pause.disabled=false;
-	paused.style.display="inline-block";
 	shortButton.disabled=true;
 	longButton.disabled=true;
 	showDisabled();
@@ -215,11 +197,8 @@ var startLongBTimer =function () {
 	longButton.disabled=true;
 	shortButton.disabled=true;
 	pomodoro.disabled=true;
-	// reset.disabled=false;
 	reseted.style.display="inline-block";
-	// pause.disabled=false;
 	paused.style.display="inline-block";
-	// play.disabled=true;
 	played.style.display="none";
 	showDisabled();
 }
@@ -258,13 +237,10 @@ function endOfLongB() {
 	// long.disabled=false;
 	playAudio();
 	pomodoro.disabled=false;
-	// play.disabled=true;
 	played.style.display="none";
-	// pause.disabled=false;
 	paused.style.display="inline-block";
 	shortButton.disabled=true;
 	longButton.disabled=true;
-	// reset.disabled=false;
 	reseted.style.display="inline-block";
 	showDisabled();
 
@@ -275,27 +251,21 @@ var pausePomoTimer = function (){
 	if (timer==1) {
 		window.clearInterval(pomoSecInterval);
 		pomodoro.disabled=true;
-		// play.disabled=false;
 		played.style.display="inline-block";
-		// pause.disabled=true;
 		paused.style.display="none";
 		showDisabled();
 	}
 	if (timer==2) {
 		window.clearInterval(shortSecInterval);
 		shortButton.disabled=true;
-		// play.disabled=false;
 		played.style.display="inline-block";
-		// pause.disabled=true;
 		paused.style.display="none";
 		showDisabled();
 	}
 	if (timer==3) {
 		window.clearInterval(longSecInterval);
 		longButton.disabled=true;
-		// play.disabled=false;
 		played.style.display="inline-block";
-		// pause.disabled=true;
 		paused.style.display="none";
 		showDisabled();
 	}
@@ -304,33 +274,24 @@ var playPomoTimer = function (){
 	if (timer==1){
 		pomoSecInterval=setInterval(pomoDelaying, 1000);
 		pomodoro.disabled=true;
-		// reset.disabled=false;
 		reseted.style.display="inline-block";
-		// pause.disabled=false;
 		paused.style.display="inline-block";
-		// play.disabled=true;
 		played.style.display="none";
 		showDisabled();
 	}
 	if (timer==2) {
 		shortSecInterval=setInterval(shortDelaying, 1000);
 		shortB.disabled=true;
-		// reset.disabled=false;
 		reseted.style.display="inline-block";
-		// play.disabled=true;
 		played.style.display="none";
-		// pause.disabled=false;
 		paused.style.display="inline-block";
 		showDisabled();
 	}
 	if (timer==3) {
 		longSecInterval=setInterval(longDelaying, 1000);
 		longButton.disabled=true;
-		// reset.disabled=false;
 		reseted.style.display="inline-block";
-		// pause.disabled=false;
 		paused.style.display="inline-block";
-		// play.disabled=true;
 		played.style.display="none";
 		showDisabled();
 	}
@@ -345,11 +306,8 @@ var ResetPomoTimer = function (){
 		// pomo.currentSeconds=pomo.currentSeconds;
 		pomodoro.disabled=false;
 		shortButton.disabled=false;
-		// play.disabled=true;
 		played.style.display="none";
-		// pause.disabled=true;
 		paused.style.display="none";
-		// reset.disabled=true;
 		reseted.style.display="none";
 		showDisabled();
 	}
@@ -362,11 +320,8 @@ var ResetPomoTimer = function (){
 		shortButton.disabled=false;
 		pomodoro.disabled=false;
 		longButton.disabled=false;
-		// play.disabled=true;
 		played.style.display="none";
-		// pause.disabled=true;
 		paused.style.display="none";
-		// reset.disabled=true;
 		reseted.style.display="none";
 		showDisabled();
 	}
@@ -379,11 +334,8 @@ var ResetPomoTimer = function (){
 		shortButton.disabled=false;
 		pomodoro.disabled=false;
 		longButton.disabled=false;
-		// play.disabled=true;
 		played.style.display="none";
-		// pause.disabled=true;
 		paused.style.display="none";
-		// reset.disabled=true;
 		reseted.style.display="none";
 		showDisabled();
 }
