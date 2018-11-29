@@ -3,11 +3,10 @@ var timer=1;
 var pomos=0;
 var round=0;
 var pomo = {
-	startMinutes:2,
+	startMinutes:25,
 	startSeconds:60,
-	currentMinutes:1,
-	currentSeconds:59,
-	spentMinutes:1
+	currentMinutes:24,
+	currentSeconds:59
 }
 // console.log(pomo.currentMinutes);
 
@@ -45,8 +44,8 @@ showDisabled();
 // showSeconds.textContent=pomo.startSeconds;
 var startPomoTimer= function(){
 	timer=1;
-	pomo.currentMinutes=pomo.currentMinutes;
-	pomo.currentSeconds=pomo.currentSeconds;
+	// pomo.currentMinutes=pomo.currentMinutes;
+	// pomo.currentSeconds=pomo.currentSeconds;
 	// showMinutes.textContent=pomo.currentMinutes;
 	// showSeconds.textContent=pomo.startSeconds;
 	pomoSecInterval=setInterval(pomoDelaying, 1000);
@@ -63,26 +62,13 @@ var pomoDelaying = function (){
 	// checks and counts down
 	if (pomo.currentSeconds>0){
 		// displaying timer seconds in the page
-		if (pomo.currentMinutes<10){
-			showMinutes.textContent="0"+pomo.currentMinutes;
-		}
-		else {
-			showMinutes.textContent=pomo.currentMinutes;
-		}
-		if (pomo.currentSeconds<10){
-			showSeconds.textContent="0"+pomo.currentSeconds;
-		}
-		else{
-			showSeconds.textContent=pomo.currentSeconds;
-		}
+		showMinutes.textContent=pomo.currentMinutes;
+		showSeconds.textContent=pomo.currentSeconds;
 		pomo.currentSeconds--;
 	}
 	else if (pomo.currentMinutes>0) {
-		showSeconds.textContent="0"+pomo.currentSeconds;
-
+		showSeconds.textContent=pomo.currentSeconds;
 		pomo.currentMinutes--;
-		pomo.spentMinutes++;
-		console.log(pomo.spentMinutes);
 		pomo.currentSeconds=59;
 	}
 	else{
@@ -100,6 +86,8 @@ var pomoDelaying = function (){
 		// console.log(pomo.startMinutes);
 		// Innitialize the timer to original state
 		showMinutes.textContent=pomo.startMinutes;
+// pomo.currentSeconds=pomo.startSeconds;
+		// console.log(pomo.currentSeconds);
 		// Reactivate all the buttons
 		playAudio();
 		pomodoro.disabled=true;
@@ -113,6 +101,7 @@ var pomoDelaying = function (){
 			console.log(pomos);
 		}
 		else{
+			console.log(pomos);
 			round=round+1;
 			pomos=0;
 			console.log(round);
@@ -157,24 +146,14 @@ function shortDelaying(){
 // checks and counts down
 	 if (shortB.currentSeconds>0){
 	// displaying timer seconds in the page
-		if (shortB.currentMinutes<10){
-				showMinutes.textContent="0"+shortB.currentMinutes;
-			}
-			else {
-				showMinutes.textContent=shortB.currentMinutes;
-			}
-			if (shortB.currentSeconds<10){
-				showSeconds.textContent="0"+shortB.currentSeconds;
-			}
-			else{
-				showSeconds.textContent=shortB.currentSeconds;
-			}
+		showSeconds.textContent=shortB.currentSeconds;
+		showMinutes.textContent=shortB.currentMinutes;
 		shortB.currentSeconds--;
 	}
 
 	else if (shortB.currentMinutes>0) {
 		// console.log(currentTimeMinutes);
-		showSeconds.textContent="0"+shortB.currentSeconds;
+		showSeconds.textContent=shortB.currentSeconds;
 		shortB.currentMinutes--;
 		// showMinutes.textContent=shortB.currentMinutes;
 		shortB.currentSeconds=59;
@@ -225,22 +204,12 @@ var startLongBTimer =function () {
 }
 function longDelaying(){
 // checks and counts down
-	if (longB.currentSeconds>0){
+	 if (longB.currentSeconds>0){
 	// displaying timer seconds in the page
-		if (longB.currentMinutes<10){
-				showMinutes.textContent="0"+longB.currentMinutes;
-			}
-			else {
-				showMinutes.textContent=longB.currentMinutes;
-			}
-			if (longB.currentSeconds<10){
-				showSeconds.textContent="0"+longB.currentSeconds;
-			}
-			else{
-				showSeconds.textContent=longB.currentSeconds;
-			}
+		showSeconds.textContent=longB.currentSeconds;
+		showMinutes.textContent=longB.currentMinutes;
 		longB.currentSeconds--;
-	} 
+	}
 	else if (longB.currentMinutes>0) {
 		showSeconds.textContent=longB.currentSeconds;
 		longB.currentMinutes--;
@@ -330,39 +299,45 @@ var playPomoTimer = function (){
 var ResetPomoTimer = function (){
 	if (timer==1){
 		window.clearInterval(pomoSecInterval);
-		pomo.currentMinutes=pomo.startMinutes;
+		// pomo.currentMinutes=pomo.startMinutes;
 		pomo.currentSeconds=59;
 		showMinutes.textContent=pomo.startMinutes;
 		showSeconds.textContent=pomo.startSeconds;
 		// pomo.currentSeconds=pomo.currentSeconds;
-		resetDisabled();
+		pomodoro.disabled=false;
+		shortButton.disabled=false;
+		played.style.display="none";
+		paused.style.display="none";
+		reseted.style.display="none";
 		showDisabled();
 	}
 	if (timer==2) {
 		window.clearInterval(shortSecInterval);
-		shortB.currentMinutes=shortB.startMinutes;
+		// shortB.currentMinutes=shortB.startMinutes;
 		shortB.currentSeconds=59;
 		showMinutes.textContent=shortB.startMinutes;
 		showSeconds.textContent=shortB.startSeconds;
-		resetDisabled();
+		shortButton.disabled=false;
+		pomodoro.disabled=false;
+		longButton.disabled=false;
+		played.style.display="none";
+		paused.style.display="none";
+		reseted.style.display="none";
 		showDisabled();
 	}
 	if (timer==3) {
 		window.clearInterval(longSecInterval);
-		longB.currentMinutes=longB.currentMinutes;
+		// longB.currentMinutes=longB.currentMinutes;
 		longB.currentSeconds=59;
 		showMinutes.textContent=longB.startMinutes;
 		showSeconds.textContent=longB.startSeconds;
-		resetDisabled();
+		shortButton.disabled=false;
+		pomodoro.disabled=false;
+		longButton.disabled=false;
+		played.style.display="none";
+		paused.style.display="none";
+		reseted.style.display="none";
 		showDisabled();
-}
-function resetDisabled() {
-	shortButton.disabled=false;
-	pomodoro.disabled=false;
-	longButton.disabled=false;
-	played.style.display="none";
-	paused.style.display="none";
-	reseted.style.display="none";
 }
 }
 function showDisabled() {
