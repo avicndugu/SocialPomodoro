@@ -3,9 +3,9 @@ var timer=1;
 var pomos=0;
 var round=0;
 var pomo = {
-	startMinutes:2,
+	startMinutes:25,
 	startSeconds:60,
-	currentMinutes:1,
+	currentMinutes:24,
 	currentSeconds:59,
 	spentMinutes:1
 }
@@ -79,7 +79,6 @@ var pomoDelaying = function (){
 	}
 	else if (pomo.currentMinutes>0) {
 		showSeconds.textContent="0"+pomo.currentSeconds;
-
 		pomo.currentMinutes--;
 		pomo.spentMinutes++;
 		console.log(pomo.spentMinutes);
@@ -144,7 +143,7 @@ var startShortBTimer= function(){
 	timer=2;
 	// shortB.currentMinutes=shortB.startMinutes;
 	// shortB.currentSeconds=shortB.startSeconds;
-	showMinutes.textContent=shortB.currentMinutes;
+	showMinutes.textContent="0"+shortB.currentMinutes;
 	shortSecInterval=setInterval(shortDelaying, 1000);
 	shortButton.disabled=true;
 	longButton.disabled=true;
@@ -173,7 +172,7 @@ function shortDelaying(){
 	}
 
 	else if (shortB.currentMinutes>0) {
-		// console.log(currentTimeMinutes);
+		// console.log(currentMinutes);
 		showSeconds.textContent="0"+shortB.currentSeconds;
 		shortB.currentMinutes--;
 		// showMinutes.textContent=shortB.currentMinutes;
@@ -332,6 +331,7 @@ var ResetPomoTimer = function (){
 		window.clearInterval(pomoSecInterval);
 		pomo.currentMinutes=pomo.startMinutes;
 		pomo.currentSeconds=59;
+		pomo.currentMinutes=24;
 		showMinutes.textContent=pomo.startMinutes;
 		showSeconds.textContent=pomo.startSeconds;
 		// pomo.currentSeconds=pomo.currentSeconds;
@@ -342,7 +342,8 @@ var ResetPomoTimer = function (){
 		window.clearInterval(shortSecInterval);
 		shortB.currentMinutes=shortB.startMinutes;
 		shortB.currentSeconds=59;
-		showMinutes.textContent=shortB.startMinutes;
+		shortB.currentMinutes=4;
+		showMinutes.textContent="0"+shortB.startMinutes;
 		showSeconds.textContent=shortB.startSeconds;
 		resetDisabled();
 		showDisabled();
@@ -351,6 +352,7 @@ var ResetPomoTimer = function (){
 		window.clearInterval(longSecInterval);
 		longB.currentMinutes=longB.currentMinutes;
 		longB.currentSeconds=59;
+		longB.currentMinutes=14;
 		showMinutes.textContent=longB.startMinutes;
 		showSeconds.textContent=longB.startSeconds;
 		resetDisabled();
