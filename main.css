@@ -46,6 +46,15 @@ footer p {
 	bottom:0;
 	left:35%;
 }
-@media only screen and (max-width 900px) {
-
+@media only screen and (max-width:900px) {
+	.collumn {
+		padding-top: 5px;
+	}
+	.row1 .collumn {
+		width:100%;
+	}
+	button {
+	border:none;
+	padding: 5% 20%;
+	}
 }
