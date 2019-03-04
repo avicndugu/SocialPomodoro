@@ -23,9 +23,18 @@ let	pomodoro=0;
 let	shortB=0;
 let	longB=0;
 
+const SECONDS=document.getElementById('seconds');
+const MINUTES=document.getElementById('minutes');
+const RECORDS= document.getElementById('records');
+
+/////////////// RENDERING MINUTES AND SECONDS BEFORE THE COUNTERS START ///////////////
+MINUTES.innerHTML=pomo.startMinutes;
+SECONDS.innerHTML=pomo.startSeconds;
+RECORDS.innerHTML=pomodoro;
 
 console.log(pomo.startMinutes);
 console.log(pomo.startSeconds);
+/////////////// END OF RENDERING MINUTES AND SECONDS BEFORE THE COUNTERS START ///////////////
 ////////////////////// POMODORO COUNTER /////////////////////////
 
 function counter() {
@@ -43,44 +52,72 @@ function counter() {
 		displaySec();
 		displayMin();
 		window.clearInterval(secInterval);
-		records();
+		recorder();
+		displayPomos();
 	}
 }
 
 //////////////////// Use these 2 functions to get data and display it //////////////
 function displaySec() {
-	console.log(startSeconds);
+	if (startSeconds<9){
+		SECONDS.innerHTML="0"+startSeconds;
+		console.log(startSeconds);
+	} else {
+		SECONDS.innerHTML=startSeconds;
+		console.log(startSeconds);
+	}
 }
 function displayMin() {
-	console.log(startMinutes);
+	if (startMinutes<9){
+		MINUTES.innerHTML="0"+startMinutes;
+		console.log(startMinutes);
+	} else {
+		MINUTES.innerHTML=startMinutes;
+		console.log(startMinutes);
+	}
+	// console.log(startMinutes);
 }
+// Display the number pomodoro undertaken
+function displayPomos(){
+	RECORDS.innerHTML=pomodoro;
+	// console.log(showRecords);
+	// console();
+}
+
 ///////////////////////////////////////////////////////////////////////////////////
 //// RECORDs WHEN A WHOLE POMODORO/SHORT OR LONG BREAK IS COMPLETED ///////////////
-function records(){
+function recorder(){
 	if (record==="pomodoro"){
 		pomodoro+=1;
-		console.log("q");
-		return pomodoro;
+		// console.log("q");
+		// console.log(pomodoro);
+		// return pomodoro;
 
-	}
-	else if(record==="short"){
+	}else if(record==="short"){
 		shortB+=1;
-		console.log("w");
-		return shortB;
-	}
-	else if(record==="long"){
+		// console.log("w");
+		// console.log(shortB);
+		// return shortB;
+	}else if(record==="long"){
 		longB+=1;
-		console.log("e");
-		return longB;
+		// console.log("e");
+		// console.log(longB);
+		// return longB;
+	}else {
+		// return {pomodoro,shortB,longB};
 	}
-	else{
-		return record;
-	}
-	console.log(pomodoro);
-	console.log(shortB);
-	console.log(longB);
-} 
+	// return [pomodoro,shortB,longB];
+}
+// function showRecords(){
+// 	// recorder();
+// 	console.log(pomodoro);
+// 	// console.log(data);
+// 	// console.log(recorder());
+// }
+
 /////////////////////////////////////////////////////////////////////////////////////
+
+
 document.querySelector('#pomodoro').addEventListener('click',function(){
 	startSeconds=pomo.startSeconds;
 	startMinutes=pomo.startMinutes;
