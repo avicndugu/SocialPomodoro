@@ -1,0 +1,30 @@
+/*WRITE CSS MOBILE FIRST DESIGN AND INSERT BREAKING POINTS FOR DESKTOP AND TABLET VERSION*/
+body {
+	background:#dedede;
+	width:100%;
+}
+
+.row {
+	width:80%;
+	margin:0 auto;
+}
+.collumn {
+	text-align: center;
+	padding-bottom: 5px;
+}
+
+button {
+	width: 80%;
+	border:none;
+	padding:15px 0;
+	background:#008000;
+	color: #fff;
+	margin: 0 auto;
+}
+
+p {
+	font-size:40px;
+	text-align: center;
+}
+
+

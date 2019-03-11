@@ -106,6 +106,7 @@ function recorder(){
 	}else {
 		// return {pomodoro,shortB,longB};
 	}
+	// updateRecords();
 	// return [pomodoro,shortB,longB];
 }
 // function showRecords(){
@@ -116,6 +117,31 @@ function recorder(){
 // }
 
 /////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////PERMANENT RECORDS ON LOCAL STORAGE///////////////////////////////////////
+//BIG GOAL Should store the time one pomodoro is completed and the date and time of completion.
+////////////////// GET THE TIME /////////////////////////////
+// Generate the time, day and date string
+function getTime() {
+	var d= new Date();
+	console.log(d);
+	var t=d.toString();
+	console.log(t);
+
+	// Choose a specific section to be stored display.
+	var time=t.slice(3,15)+", "+t.slice(16,21)+" ("+t.slice(25,33)+")";
+	console.log(time);
+	return time;
+}
+
+//////////////////END OF GET THE TIME ///////////////////////////
+// PASS THE VALUE INTO 2 SEPERATE ARRAYS ///////////////////
+
+// END OF PASS THE VALUE INTO 2 SEPERATE ARRAYS ///////////////////
+// STRINGIFY TO STORE IN LOCAL STORAGE
+// PARSE TO GET THE FUNCTION TO READ THIS VALUE.
+
 
 
 document.querySelector('#pomodoro').addEventListener('click',function(){
