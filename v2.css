@@ -4,16 +4,131 @@ body {
 	width:100%;
 }
 
-.row {
+button {
+	border:0;
+	padding:10px 20px;
+}
+
+.container-1{
+	/*width:400px;*/
+	/*height: 500px;*/
+	margin:auto;
+	/*display:flex;*/
+	/*justify-content: center;*/
+	/*align-items: center;*/
+	/*flex-direction: column;*/
+}
+header {
+	display:flex;
+}
+
+#logo {
+	flex:1;
+	text-align: center;
+	/*background-color: green;*/
+}
+
+
+.box-1 {
+	display:flex;
+	/*align-items: center;*/
+	justify-content: space-around;
+	flex-direction: row;
+	/*background-color: green;*/
+}
+
+#music {
+	padding: 0 10px;
+	/*display:flex;*/
+	/*justify-content:flex-start;*/
+	/*flex:2;*/
+}
+#theme {
+	padding:0 20px;
+	/*display:flex;*/
+	/*flex:2;*/
+	/*justify-content: flex-end;*/
+}
+
+
+
+
+
+.box-2 {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	/*background-color:purple;*/
+}
+.box-2 button {
+	margin:0 20px;
+}
+
+.tab {
+	/*background-color: #fff;*/
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: green;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+
+
+/*.collumn-inner {
+	display:flex;
+	flex-direction:column;
+	height:100px;*/
+	/*width:500px;*/
+
+/*}*/
+.box-3 {
+	flex:4;
+	display:flex;
+	justify-content: center;
+	flex-direction: row;
+	/*background-color: green;*/
+}
+
+.box-3 p {
+	font-size: 4rem;
+}
+
+.box-4 {
+	flex:1;
+	display:flex;
+	justify-content: center;
+	flex-direction: row;
+	/*background-color: blue;*/
+}
+.box-4 button{
+	margin:0 40px;
+	/*background-color: red;*/
+}
+
+
+
+
+/*.row {
 	width:80%;
 	margin:0 auto;
 }
 .collumn {
 	text-align: center;
 	padding-bottom: 5px;
-}
+}*/
 
-button {
+/*button {
 	width: 80%;
 	border:none;
 	padding:15px 0;
@@ -25,6 +140,6 @@ button {
 p {
 	font-size:40px;
 	text-align: center;
-}
+}*/
 
 
