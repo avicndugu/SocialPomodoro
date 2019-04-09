@@ -3,17 +3,17 @@
 
 // First step: innitialize the timer
 let pomo = {
-	startMinutes:3,
-	startSeconds:3,
+	startMinutes:25,
+	startSeconds:0,
 }
 
 let short = {
-	startMinutes:1,
-	startSeconds:3,
+	startMinutes:5,
+	startSeconds:60,
 }
 let long = {
-	startMinutes:2,
-	startSeconds:3,
+	startMinutes:15,
+	startSeconds:60,
 }
 let secInterval;
 
@@ -25,6 +25,7 @@ let	longB=0;
 
 const SECONDS=document.getElementById('seconds');
 const MINUTES=document.getElementById('minutes');
+const PAUSEPLAY=document.getElementById('pause-play');
 // const RECORDS= document.getElementById('records');
 
 /////////////// RENDERING MINUTES AND SECONDS BEFORE THE COUNTERS START ///////////////
@@ -45,7 +46,7 @@ function counter() {
 	else if(startMinutes>0) {
 		startMinutes--;
 		displayMin();
-		startSeconds=1;
+		startSeconds=59;
 		displaySec();
 	}
 	else{
@@ -188,3 +189,27 @@ document.querySelector('#reset').addEventListener('click',function(){
 	displayMin();
 	displaySec();
 });
+
+PAUSEPLAY.addEventListener('click', function(){
+	toggler();
+	// window.clearInterval(secInterval);
+	 if(!!secInterval) {
+            clearInterval(secInterval);
+            secInterval = undefined;
+        } else secInterval = setInterval(counter, 1000);
+
+});
+
+
+// TOGGLE PLAY BUTTON BETWEEN PAUSE AND PLAY
+function toggler() {
+	if(PAUSEPLAY.innerText=="Play"){
+		PAUSEPLAY.innerHTML="<b>Pause</b>";
+		// secInterval=setInterval(counter, 1000);
+	} else{
+		PAUSEPLAY.innerHTML="<b>Play</b>";
+		// window.clearInterval(secInterval);
+	}
+}
+
+
