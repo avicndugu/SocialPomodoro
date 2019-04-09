@@ -9,11 +9,11 @@ let pomo = {
 
 let short = {
 	startMinutes:5,
-	startSeconds:60,
+	startSeconds:0,
 }
 let long = {
 	startMinutes:15,
-	startSeconds:60,
+	startSeconds:0,
 }
 let secInterval;
 
@@ -60,21 +60,21 @@ function counter() {
 
 //////////////////// Use these 2 functions to get data and display it //////////////
 function displaySec() {
-	if (startSeconds<9){
+	if (startSeconds<10){
 		SECONDS.innerHTML="0"+startSeconds;
-		console.log(startSeconds);
+		// console.log(startSeconds);
 	} else {
 		SECONDS.innerHTML=startSeconds;
-		console.log(startSeconds);
+		// console.log(startSeconds);
 	}
 }
 function displayMin() {
-	if (startMinutes<9){
+	if (startMinutes<10){
 		MINUTES.innerHTML="0"+startMinutes;
-		console.log(startMinutes);
+		// console.log(startMinutes);
 	} else {
 		MINUTES.innerHTML=startMinutes;
-		console.log(startMinutes);
+		// console.log(startMinutes);
 	}
 	// console.log(startMinutes);
 }
@@ -191,12 +191,22 @@ document.querySelector('#reset').addEventListener('click',function(){
 });
 
 PAUSEPLAY.addEventListener('click', function(){
-	toggler();
-	// window.clearInterval(secInterval);
-	 if(!!secInterval) {
-            clearInterval(secInterval);
-            secInterval = undefined;
-        } else secInterval = setInterval(counter, 1000);
+	if(typeof(startSeconds)=="undefined"){
+	// Fails silently when the pause button is pressed
+	// even before any timer has started the countdown.
+	// console.log(typeof(startSeconds));
+
+	}
+	else {
+		toggler();
+		// Try and understand how this piece of code works copied from sololearn
+		 if(!!secInterval) {
+	            clearInterval(secInterval);
+	            secInterval = undefined;
+	        } else {
+				secInterval = setInterval(counter, 1000);
+			}
+	}
 
 });
 
