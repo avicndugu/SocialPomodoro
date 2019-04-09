@@ -4,20 +4,20 @@
 // First step: innitialize the timer
 let pomo = {
 	startMinutes:3,
-	startSeconds:1,
+	startSeconds:3,
 }
 
 let short = {
 	startMinutes:1,
-	startSeconds:1,
+	startSeconds:3,
 }
 let long = {
 	startMinutes:2,
-	startSeconds:1,
+	startSeconds:3,
 }
 let secInterval;
 
-let record;
+let record="pomodoro";
 
 let	pomodoro=0;
 let	shortB=0;
@@ -25,12 +25,12 @@ let	longB=0;
 
 const SECONDS=document.getElementById('seconds');
 const MINUTES=document.getElementById('minutes');
-const RECORDS= document.getElementById('records');
+// const RECORDS= document.getElementById('records');
 
 /////////////// RENDERING MINUTES AND SECONDS BEFORE THE COUNTERS START ///////////////
 MINUTES.innerHTML=pomo.startMinutes;
-SECONDS.innerHTML=pomo.startSeconds;
-RECORDS.innerHTML=pomodoro;
+SECONDS.innerHTML="0"+pomo.startSeconds;
+// RECORDS.innerHTML=pomodoro;
 
 console.log(pomo.startMinutes);
 console.log(pomo.startSeconds);
@@ -79,9 +79,8 @@ function displayMin() {
 }
 // Display the number pomodoro undertaken
 function displayPomos(){
-	RECORDS.innerHTML=pomodoro;
+	// RECORDS.innerHTML=pomodoro;
 	// console.log(showRecords);
-	// console();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -150,6 +149,8 @@ document.querySelector('#pomodoro').addEventListener('click',function(){
 	window.clearInterval(secInterval);
 	record="pomodoro";
 	secInterval=setInterval(counter, 1000);
+	displayMin();
+	displaySec();
 });
 
 document.querySelector('#short').addEventListener('click',function(){
@@ -158,6 +159,8 @@ document.querySelector('#short').addEventListener('click',function(){
 	window.clearInterval(secInterval);
 	record="short";
 	secInterval=setInterval(counter, 1000);
+	displayMin();
+	displaySec();
 });
 
 document.querySelector('#long').addEventListener('click',function(){
@@ -166,4 +169,22 @@ document.querySelector('#long').addEventListener('click',function(){
 	window.clearInterval(secInterval);
 	record="long";
 	secInterval=setInterval(counter, 1000);
+	displayMin();
+	displaySec();
+});
+
+document.querySelector('#reset').addEventListener('click',function(){
+	window.clearInterval(secInterval);
+	if(record==="pomodoro"){
+		startSeconds=pomo.startSeconds;
+		startMinutes=pomo.startMinutes;
+	}else if(record==="long"){
+	 	startSeconds=long.startSeconds;
+	 	startMinutes=long.startMinutes;
+	} else {
+		startSeconds=short.startSeconds;
+		startMinutes=short.startMinutes;
+	}
+	displayMin();
+	displaySec();
 });

@@ -1,18 +1,38 @@
 /*WRITE CSS MOBILE FIRST DESIGN AND INSERT BREAKING POINTS FOR DESKTOP AND TABLET VERSION*/
 body {
-	background:#dedede;
+	background:#208df1;
+	background:rgba(32,	141,255, 0.9);
+	/*#38f140;*/
 	width:100%;
+
 }
 
 button {
 	border:0;
 	padding:10px 20px;
+	border-radius: 10px;
+	background-color:rgba(0,0,0, 0.5);
+	/*#0004eb;*/
+	color:#eee;
+	margin-top:10px;
+	/*Add shadow that is white to accentuate the buttons*/
+}
+
+/*Buttons Hover animation*/
+button:hover {
+	background-color:rgba(0,0,0, 0.6);
+}
+
+/*Buttons Clicked animation*/
+button:active {
+	transform:scale(0.9);
 }
 
 .container-1{
 	/*width:400px;*/
 	/*height: 500px;*/
 	margin:auto;
+	padding:20px;
 	/*display:flex;*/
 	/*justify-content: center;*/
 	/*align-items: center;*/
@@ -50,14 +70,11 @@ header {
 	/*justify-content: flex-end;*/
 }
 
-
-
-
-
 .box-2 {
 	display: flex;
 	justify-content: center;
 	flex-direction: row;
+	flex-flow: row wrap;
 	/*background-color:purple;*/
 }
 .box-2 button {
@@ -75,7 +92,7 @@ header {
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: green;
+  /*background-color: green;*/
 }
 
 /* Create an active/current tablink class */
@@ -142,4 +159,47 @@ p {
 	text-align: center;
 }*/
 
+
+
+
+
+/*.box-2 > * {*/
+	  /*flex: 1 100%;*/
+	/*}*/
+
+ /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	.box-2 > * {
+	  flex: 1 100%;
+	}
+
+	/*> * { 
+		flex: 1 0 0;
+	}*/
+
+	/*.tablinks{
+		width: 100%;
+	}*/
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	/*display: flex;*/
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+} 
 
