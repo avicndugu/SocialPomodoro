@@ -52,6 +52,7 @@ function counter() {
 	else{
 		displaySec();
 		displayMin();
+		notifier();
 		window.clearInterval(secInterval);
 		recorder();
 		displayPomos();
@@ -195,7 +196,6 @@ PAUSEPLAY.addEventListener('click', function(){
 	// Fails silently when the pause button is pressed
 	// even before any timer has started the countdown.
 	// console.log(typeof(startSeconds));
-
 	}
 	else {
 		toggler();
@@ -223,3 +223,12 @@ function toggler() {
 }
 
 
+////////////// NOTIFICATION ////////////////////////////
+// Create a function that will play the alert sound
+// Choose the sound
+// google how to play sound using javascript
+function notifier() {
+	const sound= new Audio();
+	sound.src="music/alert-sound.mp3";
+	sound.play();
+}
